@@ -33,4 +33,13 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+//Process.env setting
+require('dotenv').config();
+const db = require('./models/index');
+
+db.query(`SELECT * FROM USER;`, (err, rows, fields) => {
+  console.log('결과를 받아왔습니다:', rows);
+  rows.forEach((row) => console.log(row.USERID));
+});
+
 module.exports = app;
