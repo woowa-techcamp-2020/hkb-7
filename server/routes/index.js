@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+const userRouter = require('./user');
+const activityRouter = require('./activity');
+const categoryRouter = require('./category');
+const paymentMethodRouter = require('./payment-method');
+const profileRouter = require('./profile');
+
+router.use('/user', userRouter);
+router.use('/activity', activityRouter);
+router.use('/category', categoryRouter);
+router.use('/payment-method', paymentMethodRouter);
+router.use('/profile', profileRouter);
+
+router.get('/', function (req, res, next) {
+  res.render('index.html');
 });
 
 module.exports = router;
