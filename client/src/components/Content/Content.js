@@ -3,7 +3,7 @@ import webpack from 'imgs/webpack.png';
 import { sum } from 'utils/math';
 
 export default function SecondChild() {
-  this.$target = document.querySelector('#app');
+  this.$target = document.querySelector('#App');
 
   const $h2 = document.createElement('h2');
   $h2.className = 'second';
