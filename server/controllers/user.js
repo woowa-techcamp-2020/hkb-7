@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
 };
 
 exports.findById = async (req, res) => {
-  const user = await User.findOne('*', { id: req.params.id });
+  const user = await User.findOne('*', { id: req.user.id });
   if (!user) res.status(404).send('user not found');
   else res.send(user);
 };
