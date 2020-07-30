@@ -60,6 +60,7 @@ class Model {
 
   async create(input) {
     const validatedInput = this.validate(input);
+    // 중복 방지 코드 필요함
     const queryStmt = generateCreateQueryStmt(this.tableName, validatedInput);
     return {
       id: (await this._pool.query(queryStmt))[0].insertId,
