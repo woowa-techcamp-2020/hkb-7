@@ -16,6 +16,7 @@ class User extends Model {
       },
     );
     this.tableName = 'user';
+    console.log(`${this.tableName} has been instantiated.`);
   }
 }
 

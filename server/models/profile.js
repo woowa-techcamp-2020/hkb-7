@@ -19,6 +19,7 @@ class Profile extends Model {
       },
     );
     this.tableName = 'profile';
+    console.log(`${this.tableName} has been instantiated.`);
   }
 }
 

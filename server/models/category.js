@@ -16,6 +16,7 @@ class Category extends Model {
       },
     );
     this.tableName = 'category';
+    console.log(`${this.tableName} has been instantiated.`);
   }
 }
 
