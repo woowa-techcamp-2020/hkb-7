@@ -1,6 +1,9 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 exports.create = async (req, res) => {
+  const salt = await bcrypt.genSalt(+process.env.SALTROUNDS);
+  req.body.password = await bcrypt.hash(req.body.password, salt);
   const user = await User.create(req.body);
   res.send(user);
 };
