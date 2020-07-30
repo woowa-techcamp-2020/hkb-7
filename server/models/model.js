@@ -60,7 +60,7 @@ class Model {
 
   async create(input) {
     const validatedInput = this.validate(input);
-    const queryStmt = generateCreateQueryStmt.call(this, validatedInput);
+    const queryStmt = generateCreateQueryStmt(this.tableName, validatedInput);
     return {
       id: (await this._pool.query(queryStmt))[0].insertId,
       ...input,
@@ -69,26 +69,26 @@ class Model {
 
   async findOne(attributes, where) {
     const validatedWhere = this.validate({ ...where, ...this.defaultWhere });
-    const queryStmt = generateFindQueryStmt.call(this, true, attributes, validatedWhere);
+    const queryStmt = generateFindQueryStmt(this.tableName, true, attributes, validatedWhere);
     return (await this._pool.query(queryStmt))[0][0];
   }
 
   async findAll(attributes, where) {
     const validatedWhere = this.validate({ ...where, ...this.defaultWhere });
-    const queryStmt = generateFindQueryStmt.call(this, false, attributes, validatedWhere);
+    const queryStmt = generateFindQueryStmt(this.tableName, false, attributes, validatedWhere);
     return (await this._pool.query(queryStmt))[0];
   }
 
   async update(input) {
     if (!input.id && !input.user_id) throw this.validationError;
     const validatedInput = this.validate(input);
-    const queryStmt = generateUpdateQueryStmt.call(this, validatedInput);
+    const queryStmt = generateUpdateQueryStmt(this.tableName, validatedInput);
     return await this._pool.query(queryStmt);
   }
 
   async delete(id) {
     if (!id) throw this.validationError;
-    const queryStmt = generateDeleteQueryStmt.call(this, id);
+    const queryStmt = generateDeleteQueryStmt(this.tableName, id);
     return await this._pool.query(queryStmt);
   }
 }

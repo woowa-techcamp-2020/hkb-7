@@ -1,18 +1,18 @@
 const { wrapBacktick, isEmpty } = require('../../shared/utils/helper');
 
-exports.generateCreateQueryStmt = function (input) {
+exports.generateCreateQueryStmt = function (table, input) {
   const queryStmt = `
-    INSERT INTO ${this.tableName}
+    INSERT INTO ${table}
     (${wrapBacktick(Object.keys(input))})
     VALUES (${Object.values(input)})
   `;
   return queryStmt;
 };
 
-exports.generateFindQueryStmt = function (isOne, attributes = '*', where = {}) {
+exports.generateFindQueryStmt = function (table, isOne, attributes = '*', where = {}) {
   const queryStmt = `
     SELECT ${attributes === '*' ? '*' : wrapBacktick(attributes)} 
-    FROM ${this.tableName}
+    FROM ${table}
     ${
       !isEmpty(where)
         ? `WHERE ${Object.entries(where)
@@ -25,9 +25,9 @@ exports.generateFindQueryStmt = function (isOne, attributes = '*', where = {}) {
   return queryStmt;
 };
 
-exports.generateUpdateQueryStmt = function (input) {
+exports.generateUpdateQueryStmt = function (table, input) {
   const queryStmt = `
-    UPDATE ${this.tableName}
+    UPDATE ${table}
     SET ${Object.entries(input)
       .map((o) => `\`${o[0]}\`=${o[1]}`)
       .join(', ')}
@@ -36,9 +36,9 @@ exports.generateUpdateQueryStmt = function (input) {
   return queryStmt;
 };
 
-exports.generateDeleteQueryStmt = function (id) {
+exports.generateDeleteQueryStmt = function (table, id) {
   const queryStmt = `
-    UPDATE ${this.tableName}
+    UPDATE ${table}
     SET is_active = 0
     WHERE id = ${id}
   `;
