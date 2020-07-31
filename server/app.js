@@ -14,8 +14,6 @@ const router = require('./routes');
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, '../client/dist'));
 app.use(logger('dev'));
 app.use(express.json());
