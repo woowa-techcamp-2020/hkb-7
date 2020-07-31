@@ -6,6 +6,7 @@ const activityRouter = require('./activity');
 const categoryRouter = require('./category');
 const paymentMethodRouter = require('./payment-method');
 const profileRouter = require('./profile');
+const { isAuthenticated } = require('../utils/auth');
 
 router.use('/user', userRouter);
 router.use('/activity', activityRouter);

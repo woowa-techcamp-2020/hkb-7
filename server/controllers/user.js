@@ -1,12 +1,15 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 exports.create = async (req, res) => {
+  const salt = await bcrypt.genSalt(+process.env.SALTROUNDS);
+  req.body.password = await bcrypt.hash(req.body.password, salt);
   const user = await User.create(req.body);
   res.send(user);
 };
 
 exports.findById = async (req, res) => {
-  const user = await User.findOne('*', { id: req.params.id });
+  const user = await User.findOne('*', { id: req.user.id });
   if (!user) res.status(404).send('user not found');
   else res.send(user);
 };
