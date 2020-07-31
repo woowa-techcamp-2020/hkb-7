@@ -1,4 +1,3 @@
 import App from 'App';
 
-const $App = document.querySelector('#App');
-$App.innerHTML = App();
+new App(document.querySelector('#App'));
