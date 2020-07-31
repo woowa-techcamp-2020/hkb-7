@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/app.js',
+    main: './src/main.js',
   },
   output: {
     path: path.resolve('./dist'),
@@ -53,11 +53,7 @@ module.exports = {
         const user = childProcess.execSync('git config user.name');
         const date = new Date().toLocaleString();
 
-        return (
-          `commitVersion: ${commit}` +
-          `Build Date: ${date}\n` +
-          `Author: ${user}`
-        );
+        return `commitVersion: ${commit}` + `Build Date: ${date}\n` + `Author: ${user}`;
       },
     }),
   ],
