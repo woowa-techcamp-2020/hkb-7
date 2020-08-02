@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
+const cors = require('cors');
 
 //Process.env setting
 require('dotenv').config();
@@ -32,6 +33,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
   next();
 });
+app.use(cors());
 
 app.use('/', router);
 
