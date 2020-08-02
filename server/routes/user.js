@@ -8,7 +8,7 @@ const { authenticateLocal, isAuthenticated } = require('../utils/auth');
 router.post('/', wrapAsync(userController.create));
 router.post('/login', authenticateLocal(), wrapAsync(userController.findById));
 
-router.use(isAuthenticated);
+// router.use(isAuthenticated);
 router.get('/:id', wrapAsync(userController.findById));
 router.get('/', wrapAsync(userController.findAll));
 router.put('/', wrapAsync(userController.update));
