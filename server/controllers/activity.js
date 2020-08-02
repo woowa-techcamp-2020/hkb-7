@@ -12,7 +12,14 @@ exports.findById = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const activities = await Activity.findAll('id, content, data, user_id, payment_method_id, category_id');
+  const activities = await Activity.findAll(
+    'activity.id, activity.price, activity.content, activity.date, category.name, category.is_income, payment_method.name',
+    {
+      'MONTH(date)': 7,
+      'activity.user_id': 9,
+      'activity.is_active': 1,
+    },
+  );
   res.send({ activities });
 };
 

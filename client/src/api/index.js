@@ -32,4 +32,6 @@ const GET = async (url = '', data) => await fetch(`${serverUrl}${url}${createQue
 
 const DELETE = async (url = '') => await fetch(`${serverUrl}${url}`, defaultOptions('DELETE'));
 
-export default {};
+export default {
+  getActivities: async () => await (await GET('/activity')).json(),
+};
