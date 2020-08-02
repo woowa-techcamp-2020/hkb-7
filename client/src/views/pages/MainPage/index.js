@@ -6,10 +6,12 @@ import ActivitySection from 'views/sections/ActivitySection';
 import CalendarSection from 'views/sections/CalendarSection';
 import StatisticSection from 'views/sections/StatisticSection';
 import { element } from 'utils/element';
+import { store } from 'models/store';
 
 export default class MainPage {
   constructor($target) {
     this.$App = $target;
+    this.store = store;
 
     this.$Container = element('div', {
       className: 'main-container',

@@ -1,7 +1,17 @@
+import apis from 'api';
+
 class Store {
   constructor() {
     this._observers = new Set();
-    this.data = {};
+    this.data = {
+      activities: [],
+    };
+    this.init();
+  }
+
+  async init() {
+    const activities = await apis.getActivities();
+    this.data = { ...this.data, ...activities };
   }
 
   subscribe(component, state) {
