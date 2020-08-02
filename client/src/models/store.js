@@ -14,6 +14,7 @@ class Store {
     const activities = await apis.getActivities();
     const currentMonth = new Date().getMonth() + 1;
     this.data = { ...this.data, currentMonth: currentMonth, ...activities };
+    this.notifyAll(this.data);
   }
 
   subscribe(component, state) {
@@ -24,8 +25,14 @@ class Store {
     this._observers = [...this._observers].filter((subscriber) => subscriber.observer !== component);
   }
 
-  notify(state) {
-    this._observers.filter((subscriber) => subscriber.key === state).forEach((observer) => observer(state));
+  notifyAll(data) {
+    this._observers.forEach((subscriber) => subscriber.observer(data));
+  }
+
+  notify(data, state) {
+    [...this._observers]
+      .filter((subscriber) => subscriber.key === state)
+      .forEach((subscriber) => subscriber.observer(data));
   }
 }
 
