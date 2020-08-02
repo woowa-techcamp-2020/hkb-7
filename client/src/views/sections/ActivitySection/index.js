@@ -7,12 +7,14 @@ export default class ActivitySection {
   constructor($target) {
     this.$target = $target;
 
-    this.render();
-  }
-
-  render() {
     this.$Form = new Form(this.$target);
     this.$Filter = new Filter(this.$target);
     this.$ActivityTable = new ActivityTable(this.$target);
+  }
+
+  init(data) {
+    this.$Form.render(data);
+    this.$Filter.render(data);
+    this.$ActivityTable.render(data);
   }
 }

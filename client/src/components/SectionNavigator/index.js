@@ -7,17 +7,16 @@ export default class SectionNavigator {
 
     this.$SectionNavigator = element('ul', {
       className: 'section-navigator',
-      innerHTML: `
-        <li class="section-tab">내역</li>
-        <li class="section-tab">달력</li>
-        <li class="section-tab">통계</li>
-      `,
     });
 
-    this.render();
+    this.$target.appendChild(this.$SectionNavigator);
   }
 
-  render() {
-    this.$target.appendChild(this.$SectionNavigator);
+  render(data) {
+    this.$SectionNavigator.innerHTML = `
+      <li class="section-tab">내역</li>
+      <li class="section-tab">달력</li>
+      <li class="section-tab">통계</li>
+    `;
   }
 }

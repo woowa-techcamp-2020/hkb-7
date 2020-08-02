@@ -7,16 +7,15 @@ export default class Header {
 
     this.$Header = element('header', {
       className: 'header',
-      innerHTML: `
-        <div class="header-title">우아한 가계부</div>
-        <button class="payment-manage-button">결제 수단 관리</button>
-      `,
     });
 
-    this.render();
+    this.$target.appendChild(this.$Header);
   }
 
-  render() {
-    this.$target.appendChild(this.$Header);
+  init() {
+    this.$Header.innerHTML = `
+      <div class="header-title">우아한 가계부</div>
+      <button class="payment-manage-button">결제 수단 관리</button>
+    `;
   }
 }
