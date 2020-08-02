@@ -4,6 +4,7 @@ class Store {
   constructor() {
     this._observers = new Set();
     this.data = {
+      userId: 9,
       activities: [],
       currentMonth: null,
     };
@@ -11,8 +12,8 @@ class Store {
   }
 
   async init() {
-    const activities = await apis.getActivities();
     const currentMonth = new Date().getMonth() + 1;
+    const activities = await apis.getActivities(this.data.userId, currentMonth);
     this.data = { ...this.data, currentMonth: currentMonth, ...activities };
     this.notifyAll(this.data);
   }
