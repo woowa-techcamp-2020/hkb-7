@@ -5,13 +5,15 @@ class Store {
     this._observers = new Set();
     this.data = {
       activities: [],
+      currentMonth: null,
     };
     this.init();
   }
 
   async init() {
     const activities = await apis.getActivities();
-    this.data = { ...this.data, ...activities };
+    const currentMonth = new Date().getMonth() + 1;
+    this.data = { ...this.data, currentMonth: currentMonth, ...activities };
   }
 
   subscribe(component, state) {
