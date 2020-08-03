@@ -17,6 +17,7 @@ class Model {
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
+      dateStrings: true,
     });
     this.validationError = createHttpError(400, 'invalid input');
     this.attributes = attributes;
@@ -41,6 +42,9 @@ class Model {
           if (typeof value === 'number' || Number(value).toString() === value) {
             validatedInput[name] = value;
           } else throw this.validationError;
+          break;
+        case 'date':
+          validatedInput[name] = `'${value}'`;
           break;
         case 'datetime':
           validatedInput[name] = `'${value}'`;

@@ -6,7 +6,7 @@ class Activity extends Model {
       {
         id: { dataType: 'int', required: false },
         content: { dataType: 'varchar', required: true },
-        date: { dataType: 'datetime', required: true },
+        date: { dataType: 'date', required: true },
         user_id: { dataType: 'int', required: true },
         payment_method_id: { dataType: 'int', required: true },
         category_id: { dataType: 'int', required: true },
@@ -33,6 +33,7 @@ class Activity extends Model {
         .join(' AND ')}`}
       ORDER BY date DESC   
     `;
+    console.log(queryStmt);
     return (await this._pool.query(queryStmt))[0];
   }
 }
