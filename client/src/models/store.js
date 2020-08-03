@@ -37,6 +37,18 @@ class Store {
         subscriber.observer(data);
       });
   }
+
+  async prevMonth() {
+    const activities = await apis.getActivities(this.data.userId, --this.data.currentMonth);
+    this.data = { ...this.data, ...activities };
+    this.notify(this.data, 'currentMonth');
+  }
+
+  async nextMonth() {
+    const activities = await apis.getActivities(this.data.userId, ++this.data.currentMonth);
+    this.data = { ...this.data, ...activities };
+    this.notify(this.data, 'currentMonth');
+  }
 }
 
 export const store = new Store();

@@ -24,13 +24,11 @@ export default class MonthNavigator {
     `;
 
     bindEvent('.prev-month-button', 'click', () => {
-      data.currentMonth--;
-      this.store.notify(data, 'currentMonth');
+      this.store.prevMonth();
     });
 
     bindEvent('.next-month-button', 'click', () => {
-      data.currentMonth++;
-      this.store.notify(data, 'currentMonth');
+      this.store.nextMonth();
     });
   }
 }
