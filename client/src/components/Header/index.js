@@ -14,8 +14,23 @@ export default class Header {
 
   init() {
     this.$Header.innerHTML = `
-      <div class="header-title">우아한 가계부</div>
-      <button class="payment-manage-button">결제 수단 관리</button>
+      <div class="header">
+        <div class="left-col">
+          <div class="title">
+            <img class="side-icon" src="./public/icons/target.svg" alt="" srcset="" />
+            <div class="title-label">가계부</div>
+          </div>
+        </div>
+        <div class="middle-col">
+          <input class="search-field" type="text" placeholder="검색하기" />
+        </div>
+        <div class="right-col">
+          <button class="profile">
+            <img class="profile-pic" src="./public/images/webpack.png" alt="" srcset="" />
+            <div class="profile-name">사용자</div>
+          </button>
+        </div>
+      </div>
     `;
   }
 }
