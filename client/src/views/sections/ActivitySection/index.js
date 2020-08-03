@@ -13,7 +13,12 @@ export default class ActivitySection {
   }
 
   init(data) {
-    this.$Form.render(data);
+    this.$Form.render();
+    this.$Filter.render(data);
+    this.$ActivityTable.render(data);
+  }
+
+  render(data) {
     this.$Filter.render(data);
     this.$ActivityTable.render(data);
   }
