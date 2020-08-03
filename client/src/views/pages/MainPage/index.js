@@ -1,7 +1,7 @@
 import './styles.scss';
 import Header from 'components/Header';
-import MonthNavigator from 'components/MonthNavigator';
 import SectionNavigator from 'components/SectionNavigator';
+import MonthNavigator from 'components/MonthNavigator';
 import ActivitySection from 'views/sections/ActivitySection';
 import CalendarSection from 'views/sections/CalendarSection';
 import StatisticSection from 'views/sections/StatisticSection';
@@ -13,7 +13,6 @@ export default class MainPage {
     this.$App = $target;
     this.store = store;
     this.store.subscribe((data) => this.init(data));
-
     this.createHeader();
     this.createNavigator();
     this.createSection();
@@ -21,8 +20,8 @@ export default class MainPage {
 
   init(data) {
     this.$Header.init();
-    this.$MonthNavigator.render(data);
     this.$SectionNavigator.render(data);
+    this.$MonthNavigator.render(data);
     this.$ActivitySection.init(data);
   }
 
@@ -36,8 +35,8 @@ export default class MainPage {
     });
     this.$App.appendChild(this.$Container);
 
-    this.$MonthNavigator = new MonthNavigator(this.$Container);
     this.$SectionNavigator = new SectionNavigator(this.$Container);
+    this.$MonthNavigator = new MonthNavigator(this.$Container);
   }
 
   createSection() {
