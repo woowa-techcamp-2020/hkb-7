@@ -5,7 +5,7 @@ const profileController = require('../controllers/profile');
 const { wrapAsync } = require('../../shared/utils/helper');
 const { isAuthenticated } = require('../utils/auth');
 
-router.use(isAuthenticated);
+// router.use(isAuthenticated);
 router.post('/', wrapAsync(profileController.create));
 router.get('/:id', wrapAsync(profileController.findById));
 router.get('/', wrapAsync(profileController.findAll));

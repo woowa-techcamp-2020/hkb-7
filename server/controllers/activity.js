@@ -5,14 +5,15 @@ exports.create = async (req, res) => {
   res.send(activity);
 };
 
-exports.findById = async (req, res) => {
-  const activity = await Activity.findOne('*', { id: req.params.id });
-  if (!activity) res.status(404).send('activity not found');
-  else res.send(activity);
-};
-
-exports.findAll = async (req, res) => {
-  const activities = await Activity.findAll('id, content, data, user_id, payment_method_id, category_id');
+exports.getByMonth = async (req, res) => {
+  const activities = await Activity.findAll(
+    'activity.id, activity.price, activity.content, activity.date, category.name, category.is_income, payment_method.name',
+    {
+      'MONTH(date)': req.params.month,
+      'activity.user_id': req.params.id,
+      'activity.is_active': 1,
+    },
+  );
   res.send({ activities });
 };
 
