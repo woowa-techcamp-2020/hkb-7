@@ -1,0 +1,63 @@
+:root {
+  --hkb-darkgray: rgba(10, 10, 10, 1);
+  --hkb-white: rgba(255, 255, 255, 1);
+  --hkb-lightgray: rgba(235, 235, 235, 1);
+  --hkb-medium-gray: rgba(215, 215, 215, 1);
+  --hkb-gray: rgba(170, 170, 170, 1);
+  --hkb-lightmint: rgba(37, 163, 165, 0.1);
+  --hkb-mint: rgba(37, 163, 165, 1);
+  --hkb-lightred: rgba(255, 88, 88, 0.2);
+  --hkb-red: rgba(255, 88, 88, 1);
+  --hkb-lightyellow: rgba(255, 196, 13, 0.2);
+  --hkb-yellow: rgba(169, 134, 0, 1);
+  --hkb-lightorange: rgba(229, 115, 47, 0.2);
+  --hkb-orange: rgba(229, 115, 47, 1);
+  --hkb-lightgreen: rgba(50, 205, 50, 0.2);
+  --hkb-green: rgba(34, 139, 34, 1);
+  --hkb-font-big: 24px;
+  --hkb-font-medium: 20px;
+  --hkb-font-small: 15px;
+
+  --hkb-border-color: var(--hkb-lightgray);
+  --hkb-active-background-color: var(--hkb-lightmint);
+}
+
+* {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+.header {
+  height: 79px;
+  width: 100vw;
+  border-bottom: 1px solid var(--hkb-border-color);
+  display: flex;
+  position: relative;
+}
+
+.left-col {
+  width: calc(20vw - 1px);
+  border-right: 1px solid var(--hkb-border-color);
+}
+
+.middle-col {
+  width: calc(60vw - 2px);
+  border-left: 1px solid var(--hkb-border-color);
+  border-right: 1px solid var(--hkb-border-color);
+}
+
+.right-col {
+  width: calc(20vw - 1px);
+  border-left: 1px solid var(--hkb-border-color);
+}
+
+.side-icon {
+  max-width: 40px;
+  max-height: 40px;
+}
