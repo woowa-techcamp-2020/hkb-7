@@ -23,12 +23,14 @@ class Store extends Observable {
     const activities = await apis.getActivities(this.data.userId, --this.data.currentMonth);
     this.data = { ...this.data, ...activities };
     this.notify(this.data, 'currentMonth');
+    this.notify(this.data, 'activities');
   }
 
   async nextMonth() {
     const activities = await apis.getActivities(this.data.userId, ++this.data.currentMonth);
     this.data = { ...this.data, ...activities };
     this.notify(this.data, 'currentMonth');
+    this.notify(this.data, 'activities');
   }
 }
 
