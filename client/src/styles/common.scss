@@ -62,3 +62,9 @@ body {
   max-width: 40px;
   max-height: 40px;
 }
+
+.main-container {
+  display: flex;
+  height: calc(100vh - 81px);
+  border-top: 1px solid var(--hkb-border-color);
+}
