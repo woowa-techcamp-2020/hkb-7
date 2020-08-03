@@ -5,10 +5,11 @@ exports.create = async (req, res) => {
   res.send(activity);
 };
 
-exports.getByMonth = async (req, res) => {
+exports.findAll = async (req, res) => {
   const activities = await Activity.findAll(
     'activity.id, activity.price, activity.content, activity.date, category.name, category.is_income, payment_method.name',
     {
+      'YEAR(date)': req.params.year,
       'MONTH(date)': req.params.month,
       'activity.user_id': req.params.id,
       'activity.is_active': 1,

@@ -12,7 +12,7 @@ export default class MainPage {
   constructor($target) {
     this.$App = $target;
     this.store = store;
-    this.store.subscribe((data) => this.init(data));
+    this.store.subscribe((data) => this.init(data), 'init');
 
     this.createHeader();
     this.createNavigator();

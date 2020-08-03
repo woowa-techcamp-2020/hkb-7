@@ -6,38 +6,40 @@ class Store extends Observable {
     super();
     this.data = {
       userId: 9,
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
       activities: {
         date: {
           dailyActivities: null,
           dailyTotal: null,
         },
       },
-      currentMonth: null,
       total: {},
     };
-    this.init();
+    this.init(this.data.userId, this.data.year, this.data.month);
   }
 
-  async init() {
-    const currentMonth = new Date().getMonth() + 1;
-    const activities = await apis.getActivities(this.data.userId, currentMonth);
-    const total = this.calcTotal(activities);
-    this.data = { ...this.data, total, currentMonth: currentMonth, activities: this.classifyDate(activities) };
-    this.notify(this.data);
+  async init(userId, year, month) {
+    this.data = { ...this.data, ...(await this.getData(userId, year, month)) };
+    this.notify(this.data, 'init');
   }
 
-  async prevMonth() {
-    const activities = await apis.getActivities(this.data.userId, --this.data.currentMonth);
+  async getData(userId, year, month) {
+    const activities = await apis.getActivities(userId, year, month);
     const total = this.calcTotal(activities);
-    this.data = { ...this.data, total, activities: this.classifyDate(activities) };
-    this.notify(this.data, 'currentMonth');
-    this.notify(this.data, 'activities');
+    return { total, activities: this.classifyDate(activities) };
   }
 
-  async nextMonth() {
-    const activities = await apis.getActivities(this.data.userId, ++this.data.currentMonth);
-    const total = this.calcTotal(activities);
-    this.data = { ...this.data, total, activities: this.classifyDate(activities) };
+  async moveMonth(month) {
+    if (month === 0) {
+      this.data.month = 12;
+      this.data.year--;
+    }
+    if (month === 13) {
+      this.data.month = 1;
+      this.data.year++;
+    }
+    this.data = { ...this.data, ...(await this.getData(this.data.userId, this.data.year, this.data.month)) };
     this.notify(this.data, 'currentMonth');
     this.notify(this.data, 'activities');
   }

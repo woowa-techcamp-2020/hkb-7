@@ -19,16 +19,16 @@ export default class MonthNavigator {
   render(data) {
     this.$MonthNavigator.innerHTML = `
       <button class="prev-month-button">⬅️</button>
-      <h1 class="month-title">${data.currentMonth}월</h1>
+      <h1 class="month-title">${data.year}년 ${data.month}월</h1>
       <button class="next-month-button">➡️</button>
     `;
 
     bindEvent('.prev-month-button', 'click', () => {
-      this.store.prevMonth();
+      this.store.moveMonth(--data.month);
     });
 
     bindEvent('.next-month-button', 'click', () => {
-      this.store.nextMonth();
+      this.store.moveMonth(++data.month);
     });
   }
 }
