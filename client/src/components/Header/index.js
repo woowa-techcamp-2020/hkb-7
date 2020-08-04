@@ -12,7 +12,7 @@ export default class Header {
     this.$target.appendChild(this.$Header);
   }
 
-  init() {
+  render(data) {
     this.$Header.innerHTML = `
       <div class="header">
         <div class="left-col">
