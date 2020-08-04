@@ -11,8 +11,8 @@
 .section-navigator-item-input {
   display: none;
   &:checked + .section-navigator-item-label {
-    background: var(--hkb-lightmint);
-    color: var(--hkb-mint);
+    background: var(--active-background-color);
+    color: var(--active-foreground-color);
   }
 }
 
@@ -26,7 +26,7 @@
     margin: auto 20px auto 20px;
   }
   &:hover {
-    background-color: var(--hkb-lightmint);
-    color: var(--hkb-mint);
+    background-color: var(--active-background-color);
+    color: var(--active-foreground-color);
   }
 }

@@ -26,7 +26,7 @@
   &:hover,
   &:focus {
     color: var(--hkb-darkgray);
-    background-color: var(--hkb-active-background-color);
+    background-color: var(--active-background-color);
     outline: none;
   }
 }
@@ -45,7 +45,8 @@
   position: relative;
   &:hover,
   &:focus {
-    background-color: var(--hkb-active-background-color);
+    background-color: var(--active-background-color);
+    color: var(--active-foreground-color);
     outline: none;
   }
 }
