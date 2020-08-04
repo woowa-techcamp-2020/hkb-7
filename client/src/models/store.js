@@ -8,6 +8,7 @@ class Store extends Observable {
       userId: 9,
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
+      path: location.pathname,
       activities: {
         date: {
           dailyActivities: null,
@@ -28,6 +29,11 @@ class Store extends Observable {
     const activities = await apis.getActivities(userId, year, month);
     const total = this.calcTotal(activities);
     return { total, activities: this.classifyDate(activities) };
+  }
+
+  moveSection(tab) {
+    this.data.path = tab;
+    this.notify(this.data, 'moveSection');
   }
 
   async moveMonth(month) {

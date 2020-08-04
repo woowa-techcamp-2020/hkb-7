@@ -13,6 +13,7 @@ export default class MainPage {
     this.$App = $target;
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'init');
+    this.store.subscribe((data) => this.selectSection(data), 'moveSection');
 
     this.createHeader();
     this.createNavigator();
@@ -22,8 +23,7 @@ export default class MainPage {
 
   render(data) {
     this.$MonthNavigator.render(data);
-    this.$SectionNavigator.render(data);
-    this.$ActivitySection.init(data);
+    this.selectSection(data);
   }
 
   createHeader() {
@@ -45,8 +45,23 @@ export default class MainPage {
       className: 'section-container',
     });
     this.$Container.appendChild(this.$SectionContainer);
+  }
 
-    this.$ActivitySection = new ActivitySection(this.$SectionContainer);
+  selectSection(data) {
+    this.$SectionNavigator.render(data);
+    this.$SectionContainer.innerHTML = '';
+    switch (data.path) {
+      case '/activity':
+        this.$Section = new ActivitySection(this.$SectionContainer);
+        break;
+      case '/calendar':
+        this.$Section = new CalendarSection(this.$SectionContainer);
+        break;
+      case '/statistic':
+        this.$Section = new StatisticSection(this.$SectionContainer);
+        break;
+    }
+    this.$Section.init(data);
   }
 
   setState() {}

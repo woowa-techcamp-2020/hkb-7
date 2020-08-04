@@ -16,6 +16,6 @@ router.use('/profile', profileRouter);
 
 router.use('/statistic', express.static(path.join(__dirname, '../../client/dist')));
 router.use('/calendar', express.static(path.join(__dirname, '../../client/dist')));
-router.use('/', express.static(path.join(__dirname, '../../client/dist')));
+router.use('/activity', express.static(path.join(__dirname, '../../client/dist')));
 
 module.exports = router;
