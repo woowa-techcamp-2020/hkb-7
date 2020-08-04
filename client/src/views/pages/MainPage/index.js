@@ -52,13 +52,13 @@ export default class MainPage {
     this.$SectionNavigator.render(data);
     this.$SectionContainer.innerHTML = '';
     switch (data.path) {
-      case '/activity':
+      case '/activity/':
         this.$Section = new ActivitySection(this.$SectionContainer);
         break;
-      case '/calendar':
+      case '/calendar/':
         this.$Section = new CalendarSection(this.$SectionContainer);
         break;
-      case '/statistic':
+      case '/statistic/':
         this.$Section = new StatisticSection(this.$SectionContainer);
         break;
     }

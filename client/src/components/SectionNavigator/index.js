@@ -7,7 +7,7 @@ export default class SectionNavigator {
   constructor($target) {
     this.$target = $target;
     this.store = store;
-    this.pathList = ['/activity', '/calendar', '/statistic'];
+    this.pathList = ['/activity/', '/calendar/', '/statistic/'];
 
     this.$SectionNavigator = element('ul', {
       className: 'section-navigator',
@@ -25,7 +25,7 @@ export default class SectionNavigator {
 
     this.pathList.forEach((path) => {
       if (path !== data.path) {
-        bindEvent(`.section-tab.${path.slice(1)}`, 'click', () => {
+        bindEvent(`.section-tab.${path.slice(1, -1)}`, 'click', () => {
           this.store.moveSection(path);
         });
       }
