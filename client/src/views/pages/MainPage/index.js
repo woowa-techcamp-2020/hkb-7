@@ -12,15 +12,15 @@ export default class MainPage {
   constructor($target) {
     this.$App = $target;
     this.store = store;
-    this.store.subscribe((data) => this.init(data), 'init');
+    this.store.subscribe((data) => this.render(data), 'init');
 
     this.createHeader();
     this.createNavigator();
-    this.createSection();
+    this.createSectionContainer();
+    this.$Header.init();
   }
 
-  init(data) {
-    this.$Header.init();
+  render(data) {
     this.$MonthNavigator.render(data);
     this.$SectionNavigator.render(data);
     this.$ActivitySection.init(data);
@@ -40,7 +40,7 @@ export default class MainPage {
     this.$SectionNavigator = new SectionNavigator(this.$Container);
   }
 
-  createSection() {
+  createSectionContainer() {
     this.$SectionContainer = element('div', {
       className: 'section-container',
     });
