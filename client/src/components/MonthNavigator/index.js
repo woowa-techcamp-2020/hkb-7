@@ -7,7 +7,7 @@ export default class MonthNavigator {
   constructor($target) {
     this.$target = $target;
     this.store = store;
-    this.store.subscribe((data) => this.render(data), 'currentMonth');
+    this.store.subscribe((data) => this.render(data), 'moveMonth');
 
     this.$MonthNavigator = element('div', {
       className: 'month-navigator',

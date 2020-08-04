@@ -40,8 +40,7 @@ class Store extends Observable {
       this.data.year++;
     }
     this.data = { ...this.data, ...(await this.getData(this.data.userId, this.data.year, this.data.month)) };
-    this.notify(this.data, 'currentMonth');
-    this.notify(this.data, 'activities');
+    this.notify(this.data, 'moveMonth');
   }
 
   calcTotal(activities) {

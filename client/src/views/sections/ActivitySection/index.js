@@ -8,7 +8,7 @@ export default class ActivitySection {
   constructor($target) {
     this.$target = $target;
     this.store = store;
-    this.store.subscribe((data) => this.render(data), 'activities');
+    this.store.subscribe((data) => this.render(data), 'moveMonth');
 
     this.$Form = new Form(this.$target);
     this.$Filter = new Filter(this.$target);
