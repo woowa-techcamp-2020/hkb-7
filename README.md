@@ -1,5 +1,7 @@
 # hkb-7
 
+> 우아한테크캠프 7조 - 추연호, 조성현
+
 ![](https://user-images.githubusercontent.com/31657298/89310300-78a63200-d6af-11ea-9df6-b128ad419756.PNG)
 
 <div>
