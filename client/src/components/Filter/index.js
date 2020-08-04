@@ -1,5 +1,5 @@
 import './styles.scss';
-import { element } from '../../utils/element';
+import { element } from 'utils/element';
 
 export default class Filter {
   constructor($target) {
