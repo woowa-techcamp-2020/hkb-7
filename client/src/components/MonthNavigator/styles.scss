@@ -1,0 +1,38 @@
+.month-navigator {
+  width: 60%;
+  padding: 20px;
+  display: flex;
+}
+
+.month {
+  font-size: var(--hkb-font-big);
+  margin: auto 10px auto 0px;
+  min-width: 25%;
+  white-space: nowrap;
+}
+
+.prev-next-month-buttons {
+  width: 77%;
+}
+
+.prev-month-button,
+.next-month-button {
+  padding: 10px;
+  height: 100%;
+  min-width: 115px;
+  background-color: transparent;
+  border: 2px solid var(--hkb-border-color);
+  border-radius: 10px;
+  font-size: var(--hkb-font-small);
+  white-space: nowrap;
+  &:hover,
+  &:focus {
+    background-color: var(--active-background-color);
+    color: var(--active-foreground-color);
+    outline: none;
+  }
+}
+
+.next-month-button {
+  margin-left: 10px;
+}

@@ -22,11 +22,11 @@ export default class MainPage {
     this.$SectionContainer = element(
       'div',
       {
-        className: 'section-container',
+        className: 'section-container middle-col',
       },
       this.$SectionContainerTopBar,
     );
-    
+
     this.createHeader();
     this.createNavigator();
     this.createSection();

@@ -1,0 +1,45 @@
+.filter {
+  width: 40%;
+  margin: 20px;
+}
+
+.income-outcome-filter {
+  height: 100%;
+  display: flex;
+}
+
+.income-outcome-filter-input {
+  display: none;
+  &:checked + .income-outcome-filter-label {
+    background: var(--active-background-color);
+    color: var(--active-foreground-color);
+  }
+}
+
+.income-outcome-filter-label {
+  height: calc(100%-4px);
+  color: var(--hkb-gray);
+  background-color: transparent;
+  border: 2px solid var(--hkb-border-color);
+  border-radius: 10px;
+  white-space: nowrap;
+  padding: 10px;
+  .income-outcome-filter-label-text {
+    font-size: var(--hkb-font-small);
+    margin: auto 20px auto 20px;
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--active-background-color);
+    color: var(--active-foreground-color);
+    outline: none;
+  }
+}
+
+.left-label {
+  margin: 0 0 0 auto;
+}
+
+.right-label {
+  margin: 0 20px 0 20px;
+}
