@@ -13,6 +13,7 @@ export default class MainPage {
     this.$App = $target;
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'init');
+    this.store.subscribe((data) => this.render(data), 'stateChange');
     this.store.subscribe((data) => this.selectSection(data), 'moveSection');
 
     this.createHeader();
