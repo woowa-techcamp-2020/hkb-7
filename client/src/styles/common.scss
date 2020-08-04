@@ -3,9 +3,9 @@
   --hkb-white: rgba(255, 255, 255, 1);
   --hkb-lightgray: rgba(235, 235, 235, 1);
   --hkb-medium-gray: rgba(215, 215, 215, 1);
-  --hkb-gray: rgba(170, 170, 170, 1);
+  --hkb-gray: rgba(150, 150, 150, 1);
   --hkb-lightmint: rgba(37, 163, 165, 0.1);
-  --hkb-mint: rgba(37, 163, 165, 1);
+  --hkb-mint: rgb(39, 178, 180);
   --hkb-lightred: rgba(255, 88, 88, 0.2);
   --hkb-red: rgba(255, 88, 88, 1);
   --hkb-lightyellow: rgba(255, 196, 13, 0.2);
@@ -19,8 +19,17 @@
   --hkb-font-small: 15px;
 
   --hkb-border-color: var(--hkb-lightgray);
-  --active-background-color: var(--hkb-lightmint);
-  --active-foreground-color: var(--hkb-mint);
+
+  --inactive-background-color: transparent;
+  --inactive-foreground-color: var(--hkb-gray);
+  --focused-background-color: var(--hkb-lightmint);
+  --focused-foreground-color: var(--hkb-mint);
+  --active-background-color: var(--hkb-mint);
+  --active-foreground-color: var(--hkb-white);
+  --active-foreground-negative-color: var(--hkb-red);
+  --active-background-negative-color: var(--hkb-lightred);
+  --active-foreground-positive-color: var(--hkb-green);
+  --active-background-positive-color: var(--hkb-lightgreen);
 }
 
 * {
@@ -68,4 +77,9 @@ body {
   display: flex;
   height: calc(100vh - 81px);
   border-top: 1px solid var(--hkb-border-color);
+  overflow: scroll;
+}
+
+label, button {
+  cursor: pointer;
 }

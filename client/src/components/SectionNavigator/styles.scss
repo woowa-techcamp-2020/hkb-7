@@ -11,8 +11,8 @@
 .section-navigator-item-input {
   display: none;
   &:checked + .section-navigator-item-label {
-    background: var(--active-background-color);
-    color: var(--active-foreground-color);
+    background: var(--focused-background-color);
+    color: var(--focused-foreground-color);
   }
 }
 
@@ -20,13 +20,14 @@
   display: flex;
   padding: 20px;
   border-radius: 0 10px 10px 0px;
-  color: var(--hkb-gray);
+  color: var(--inactive-foreground-color);
+  background-color: var(--inactive-background-color);
   .section-navigator-item-label-text {
     font-size: var(--hkb-font-medium);
     margin: auto 20px auto 20px;
   }
-  &:hover {
-    background-color: var(--active-background-color);
-    color: var(--active-foreground-color);
+  &:hover, &:focused {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
   }
 }
