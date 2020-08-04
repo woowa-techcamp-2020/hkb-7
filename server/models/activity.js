@@ -33,7 +33,6 @@ class Activity extends Model {
         .join(' AND ')}`}
       ORDER BY date DESC   
     `;
-    console.log(queryStmt);
     return (await this._pool.query(queryStmt))[0];
   }
 }

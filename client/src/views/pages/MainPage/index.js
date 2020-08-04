@@ -14,7 +14,9 @@ export default class MainPage {
   constructor($target) {
     this.$App = $target;
     this.store = store;
-    this.store.subscribe((data) => this.init(data));
+    this.store.subscribe((data) => this.render(data), 'init');
+    this.store.subscribe((data) => this.render(data), 'stateChange');
+    this.store.subscribe((data) => this.selectSection(data), 'moveSection');
 
     this.$SectionContainerTopBar = element('div', {
       className: 'section-container-top-bar',
@@ -29,16 +31,13 @@ export default class MainPage {
 
     this.createHeader();
     this.createNavigator();
-    this.createSection();
+    this.createSectionContainer();
+    this.$Header.init();
   }
 
-  init(data) {
-    this.$Header.init();
-    this.$SectionNavigator.render(data);
+  render(data) {
     this.$MonthNavigator.render(data);
-    this.$Filter.render(data);
-    this.$ActivitySection.init(data);
-    this.$FormSection.init(data);
+    this.selectSection(data);
   }
 
   createHeader() {
@@ -55,11 +54,28 @@ export default class MainPage {
     this.$Filter = new Filter(this.$SectionContainerTopBar);
   }
 
-  createSection() {
+  createSectionContainer() {
+    this.$SectionContainer = element('div', {
+      className: 'section-container',
+    });
     this.$Container.appendChild(this.$SectionContainer);
-    this.$ActivitySection = new ActivitySection(this.$SectionContainer);
+  }
 
-    this.$FormSection = new FormSection(this.$Container);
+  selectSection(data) {
+    this.$SectionNavigator.render(data);
+    this.$SectionContainer.innerHTML = '';
+    switch (data.path) {
+      case '/activity/':
+        this.$Section = new ActivitySection(this.$SectionContainer);
+        break;
+      case '/calendar/':
+        this.$Section = new CalendarSection(this.$SectionContainer);
+        break;
+      case '/statistic/':
+        this.$Section = new StatisticSection(this.$SectionContainer);
+        break;
+    }
+    this.$Section.init(data);
   }
 
   setState() {}

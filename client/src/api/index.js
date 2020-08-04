@@ -33,5 +33,5 @@ const GET = async (url = '', data) => await fetch(`${serverUrl}${url}${createQue
 const DELETE = async (url = '') => await fetch(`${serverUrl}${url}`, defaultOptions('DELETE'));
 
 export default {
-  getActivities: async (id, month) => (await (await GET(`/activity/${id}/${month}`)).json()).activities,
+  getActivities: async (id, year, month) => (await (await GET(`/activity/${id}/${year}/${month}`)).json()).activities,
 };
