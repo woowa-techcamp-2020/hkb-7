@@ -2,6 +2,7 @@ import './styles.scss';
 import { element } from 'utils/element';
 import { bindEvent } from 'utils/bindEvent';
 import { store } from 'models/store';
+import { html } from 'utils/html';
 
 export default class MonthNavigator {
   constructor($target) {
@@ -17,7 +18,7 @@ export default class MonthNavigator {
   }
 
   render(data) {
-    this.$MonthNavigator.innerHTML = `
+    this.$MonthNavigator.innerHTML = html`
       <div class="month">${data.year}년 ${data.month}월</div>
       <div class="prev-next-month-buttons">
         <button class="prev-month-button">← 이전 달</button>

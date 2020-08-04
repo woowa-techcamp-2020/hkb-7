@@ -1,5 +1,6 @@
 import './styles.scss';
 import { element } from 'utils/element';
+import { html } from 'utils/html';
 
 export default class Form {
   constructor($target) {
@@ -13,7 +14,7 @@ export default class Form {
   }
 
   render(data) {
-    this.$Form.innerHTML = `
+    this.$Form.innerHTML = html`
       <div class="form-title">새로운 활동 추가하기</div>
       <div class="form-question">유형</div>
       <div class="form-answer form-is-income">
