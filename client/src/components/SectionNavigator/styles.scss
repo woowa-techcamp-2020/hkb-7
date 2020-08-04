@@ -1,0 +1,33 @@
+.section-navigator {
+  margin: 0;
+  padding: 20px 0 0 0;
+  list-style-type: none;
+}
+
+.section-navigator-item {
+  width: calc(100% - 20px);
+}
+
+.section-navigator-item-input {
+  display: none;
+  &:checked + .section-navigator-item-label {
+    background: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+  }
+}
+
+.section-navigator-item-label {
+  display: flex;
+  padding: 20px;
+  border-radius: 0 10px 10px 0px;
+  color: var(--inactive-foreground-color);
+  background-color: var(--inactive-background-color);
+  .section-navigator-item-label-text {
+    font-size: var(--hkb-font-medium);
+    margin: auto 20px auto 20px;
+  }
+  &:hover, &:focused {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+  }
+}

@@ -1,6 +1,4 @@
 import './styles.scss';
-import Form from 'components/Form';
-import Filter from 'components/Filter';
 import ActivityTable from 'components/ActivityTable';
 import { store } from 'models/store';
 
@@ -16,13 +14,10 @@ export default class ActivitySection {
   }
 
   init(data) {
-    this.$Form.render();
-    this.$Filter.render(data);
     this.$ActivityTable.render(data);
   }
 
   render(data) {
-    this.$Filter.render(data);
     this.$ActivityTable.render(data);
   }
 }

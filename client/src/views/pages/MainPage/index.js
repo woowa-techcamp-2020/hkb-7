@@ -1,8 +1,10 @@
 import './styles.scss';
 import Header from 'components/Header';
-import MonthNavigator from 'components/MonthNavigator';
 import SectionNavigator from 'components/SectionNavigator';
+import MonthNavigator from 'components/MonthNavigator';
+import Filter from 'components/Filter';
 import ActivitySection from 'views/sections/ActivitySection';
+import FormSection from 'views/sections/FormSection';
 import CalendarSection from 'views/sections/CalendarSection';
 import StatisticSection from 'views/sections/StatisticSection';
 import { element } from 'utils/element';
@@ -15,6 +17,17 @@ export default class MainPage {
     this.store.subscribe((data) => this.render(data), 'init');
     this.store.subscribe((data) => this.render(data), 'stateChange');
     this.store.subscribe((data) => this.selectSection(data), 'moveSection');
+
+    this.$SectionContainerTopBar = element('div', {
+      className: 'section-container-top-bar',
+    });
+    this.$SectionContainer = element(
+      'div',
+      {
+        className: 'section-container middle-col',
+      },
+      this.$SectionContainerTopBar,
+    );
 
     this.createHeader();
     this.createNavigator();
@@ -36,9 +49,9 @@ export default class MainPage {
       className: 'main-container',
     });
     this.$App.appendChild(this.$Container);
-
-    this.$MonthNavigator = new MonthNavigator(this.$Container);
     this.$SectionNavigator = new SectionNavigator(this.$Container);
+    this.$MonthNavigator = new MonthNavigator(this.$SectionContainerTopBar);
+    this.$Filter = new Filter(this.$SectionContainerTopBar);
   }
 
   createSectionContainer() {

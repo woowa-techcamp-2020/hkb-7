@@ -1,0 +1,159 @@
+.activity-form {
+  height: 100%;
+  overflow: scroll;
+}
+
+.form-title {
+  margin: 20px 20px 10px 20px;
+  font-size: var(--hkb-font-big);
+}
+
+.form-question {
+  margin: 20px 20px 10px 20px;
+  font-size: var(--hkb-font-medium);
+}
+
+.form-answer {
+  margin: 10px 20px 10px 20px;
+  font-size: var(--hkb-font-medium);
+  display: flex;
+}
+
+.form-is-income-input {
+  display: none;
+  &:checked + .form-pill {
+    background: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+  }
+}
+
+.form-pill {
+  color: var(--inactive-foreground-color);
+  background-color: var(--inactive-background-color);
+  border: 2px solid var(--hkb-border-color);
+  padding: 10px;
+  display: block;
+  &:focus {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+    outline: none;
+  }
+}
+
+.left-pill {
+  width: 50%;
+  border-radius: 10px 0 0 10px;
+}
+
+.right-pill {
+  width: 50%;
+  border-radius: 0 10px 10px 0;
+}
+
+.form-pill-text {
+  font-size: var(--hkb-font-small);
+  text-align: center;
+  margin: auto 20px auto 20px;
+}
+
+.form-select {
+  font-size: var(--hkb-font-small);
+  width: calc(50%);
+  text-align: center;
+  text-align-last: center;
+}
+
+.form-field-long {
+  font-size: var(--hkb-font-small);
+  width: 100%;
+  text-align: center;
+  text-align-last: center;
+  border-radius: 10px;
+}
+
+.month-grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: calc(calc(20vw - 40px) / 7);
+  color: var(--hkb-black);
+}
+
+.month-grid-date-item {
+  position: relative;
+}
+
+.month-grid-date-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.month-grid-date-label-text {
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.month-grid-date-label:hover {
+  background-color: var(--hkb-lightgray);
+}
+
+.month-grid-date-input {
+  display: none;
+  &:checked + .month-grid-date-label {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+  }
+}
+.label-suffix {
+  margin: auto auto auto 10px;
+}
+
+.form-contents {
+  width: 100%;
+  border-radius: 10px;
+}
+
+select:valid {
+  background-color: var(--focused-background-color);
+  color: var(--focused-foreground-color);
+}
+
+input[type='radio']:valid {
+  background-color: var(--focused-background-color);
+  color: var(--focused-foreground-color);
+}
+
+input[type='number']:valid {
+  background-color: var(--focused-background-color);
+  color: var(--focused-foreground-color);
+}
+
+textarea:valid {
+  background-color: var(--focused-background-color);
+  color: var(--focused-foreground-color);
+}
+
+.cancel-button {
+  margin-bottom: 20px;
+  &:hover {
+    background-color: var(--active-background-negative-color);
+    color: var(--active-foreground-negative-color);
+  }
+}
+
+.submit-button {
+  margin-bottom: 20px;
+  &:hover {
+    background-color: var(--active-background-positive-color);
+    color: var(--active-foreground-positive-color);
+  }
+}

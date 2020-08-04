@@ -1,0 +1,67 @@
+.activity-table {
+  height: calc(100% - 83.5px);
+  overflow: auto;
+}
+
+.activity-grid-container {
+  margin: 0 19px 19px 19px;
+  padding: 5px 0 5px 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr 1fr;
+  grid-auto-rows: 40px;
+  border: 2px solid var(--hkb-border-color);
+  border-radius: 10px;
+}
+
+.activity-date {
+  font-size: var(--hkb-font-medium);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: auto auto auto 20px;
+}
+
+.activity-stats {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  .negative {
+    color: var(--active-foreground-negative-color);
+  }
+  .positive {
+    color: var(--active-foreground-positive-color);
+  }
+  margin: auto 20px auto auto;
+}
+
+.activity-day-item {
+  font-size: var(--hkb-font-small);
+  .positive {
+    color: var(--active-foreground-positive-color);
+    background-color: var(--active-background-positive-color);
+  }
+  .negative {
+    color: var(--active-foreground-negative-color);
+    background-color: var(--active-background-negative-color);
+  }
+  .activity-day-item-label-text {
+    text-align: center;
+    margin: 5px 20px 5px 20px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.activity-day-item-contents {
+  margin: auto 20px auto 20px;
+}
+
+.activity-day-payment-method {
+  margin: auto 20px auto auto;
+}
+
+.activity-day-item-price {
+  margin: auto 20px auto auto;
+}
