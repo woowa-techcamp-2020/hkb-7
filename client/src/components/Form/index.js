@@ -1,12 +1,16 @@
 import './styles.scss';
 import { element } from 'utils/element';
-import { html } from 'utils/html';
+import { store } from 'models/store';
+import { bindEvent } from 'utils/bindEvent';
+import { $ } from 'utils/helper';
 import { formYears, formMonths, formDays, formDates, formPaymentMethods, formCategories } from 'utils/template';
 import { years, months, days, dates } from 'utils/constant';
 
 export default class Form {
   constructor($target) {
     this.$target = $target;
+    this.store = store;
+    this.store.subscribe((data) => this.render(data), 'addActivity');
 
     this.$Form = element('form', {
       className: 'form right-col',
@@ -16,15 +20,15 @@ export default class Form {
   }
 
   render(data) {
-    this.$Form.innerHTML = html`
+    this.$Form.innerHTML = `
       <div class="form-title">새로운 활동 추가하기</div>
       <div class="form-question">유형</div>
-      <div class="form-answer form-is-income">
-        <input class="form-is-income-input" type="radio" name="form-is-income" id="is-income" required />
+      <div class="form-answer is-income">
+        <input class="form-is-income-input" type="radio" value="1" name="is-income" id="is-income" required />
         <label class="form-pill left-pill" for="is-income">
           <div class="form-pill-text">수입</div>
         </label>
-        <input class="form-is-income-input" type="radio" name="form-is-income" id="is-outcome" required />
+        <input class="form-is-income-input" type="radio" value="0" name="is-income" id="is-outcome" required />
         <label class="form-pill right-pill" for="is-outcome">
           <div class="form-pill-text">지출</div>
         </label>
@@ -61,8 +65,8 @@ export default class Form {
               return formDates(date);
             })
             .join('')}
-          </div>
-          </div>
+        </div>
+      </div>
       <div class="form-question">결제 수단</div>
       <div class="form-answer">
         <select class="form-pill form-field-long" name="payment-method" id="form-payment-method" required>
@@ -87,15 +91,14 @@ export default class Form {
       </div>
       <div class="form-question">금액</div>
       <div class="form-answer">
-        <input class="form-pill form-field-long" type="number" name="form-price" id="form-price" required />
+        <input class="form-pill form-field-long" type="number" name="price" id="form-price" required />
         <label class="label-suffix">원</label>
       </div>
       <div class="form-question">내용</div>
       <div class="form-answer">
         <textarea
           class="form-pill form-contents"
-          name=""
-          id=""
+          name="content"
           cols="30"
           rows="10"
           placeholder="내용을 입력해주세요."
@@ -105,14 +108,56 @@ export default class Form {
 
       <div class="form-question"></div>
       <div class="form-answer">
-        <button class="form-pill left-pill cancel-button">
+        <button class="form-pill left-pill cancel-button" type="button">
           <div class="form-pill-text">취소</div>
         </button>
-        <button class="form-pill right-pill submit-button">
+        <button class="form-pill right-pill submit-button" type="button">
           <div class="form-pill-text">추가</div>
         </button>
       </div>
       <div class="form-question"></div>
     `;
+    bindEvent('#is-income', 'click', () => {
+      this.isIncomeClickHandler();
+    });
+    bindEvent('#is-outcome', 'click', () => {
+      this.isIncomeClickHandler();
+    });
+    bindEvent('.form-pill.right-pill.submit-button', 'click', () => {
+      this.submitHandler(data.userId);
+    });
+  }
+
+  isIncomeClickHandler() {
+    if ($('input[name=is-income]:checked').value == 1) {
+      document.querySelectorAll('.income-category').forEach((el) => {
+        el.classList.remove('disabled');
+      });
+      document.querySelectorAll('.outcome-category').forEach((el) => {
+        el.classList.add('disabled');
+      });
+    } else {
+      document.querySelectorAll('.income-category').forEach((el) => {
+        el.classList.add('disabled');
+      });
+      document.querySelectorAll('.outcome-category').forEach((el) => {
+        el.classList.remove('disabled');
+      });
+    }
+  }
+
+  submitHandler(userId) {
+    const info = {
+      user_id: userId,
+      is_income: $('input[name=is-income]:checked').value,
+      date: `${$('option[name=year]:checked').value}-${$('option[name=month]:checked').value}-${
+        $('input[name=date]:checked').value
+      }`,
+      payment_method_id: $('option[name=payment-method]:checked').value,
+      category_id: $('option[name=category]:checked').value,
+      price: $('input[name=price]').value,
+      content: $('textarea[name=content]').value,
+    };
+    this.store.addActivity(info);
   }
 }

@@ -66,6 +66,12 @@ class Store extends Observable {
     this.notify(this.data, 'moveMonth');
   }
 
+  async addActivity(info) {
+    await apis.createActivity(info);
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.notify(this.data, 'stateChange');
+  }
+
   calcTotal(activities) {
     return activities.reduce(
       (acc, cur) => {

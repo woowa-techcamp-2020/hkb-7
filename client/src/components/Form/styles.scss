@@ -3,6 +3,10 @@
   overflow: scroll;
 }
 
+.disabled {
+  display: none;
+}
+
 .form-title {
   padding: 20px 20px 10px 20px;
   position: sticky;
