@@ -2,7 +2,7 @@
 
 > 우아한테크캠프 7조 - 추연호, 조성현
 
-![Mockup](docs/images/Compressed-Mockup.png)
+![Mockup](docs/images/compressed-mockup.png)
 
 <div>
 <a href="#" target="_blank">
