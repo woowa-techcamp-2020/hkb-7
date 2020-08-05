@@ -1,10 +1,13 @@
 import './styles.scss';
 import { element } from 'utils/element';
+import { store } from 'models/store';
 import DailyActivityCard from 'components/DailyActivityCard';
 
 export default class ActivityTable {
   constructor($target) {
     this.$target = $target;
+    this.store = store;
+    this.store.subscribe((data) => this.render(data), 'moveMonth');
 
     this.$ActivityTable = element('div', {
       className: 'activity-table',
@@ -15,6 +18,7 @@ export default class ActivityTable {
   }
 
   render(data) {
+    this.$ActivityTable.innerHTML = '';
     this.createDailyActivityCard(data.activities);
   }
 
