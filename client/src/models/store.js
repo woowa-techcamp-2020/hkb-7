@@ -21,11 +21,11 @@ class Store extends Observable {
   }
 
   async init(userId, year, month) {
-    this.data = { ...this.data, ...(await this.getData(userId, year, month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(userId, year, month)) };
     this.notify(this.data, 'init');
   }
 
-  async getData(userId, year, month) {
+  async fetchActivities(userId, year, month) {
     const activities = await apis.getActivities(userId, year, month);
     const total = this.calcTotal(activities);
     return { total, activities: this.classifyDate(activities) };
@@ -45,7 +45,7 @@ class Store extends Observable {
       this.data.month = 1;
       this.data.year++;
     }
-    this.data = { ...this.data, ...(await this.getData(this.data.userId, this.data.year, this.data.month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
     this.notify(this.data, 'moveMonth');
   }
 
