@@ -26,7 +26,7 @@
     font-size: var(--hkb-font-medium);
     margin: auto 20px auto 20px;
   }
-  &:hover, &:focused {
+  &:hover {
     background-color: var(--focused-background-color);
     color: var(--focused-foreground-color);
   }
