@@ -25,7 +25,7 @@ export default class Filter {
           checked
         />
         <label class="income-outcome-filter-label left-label" for="income-filter-input">
-          <div class="income-outcome-filter-label-text">✓ 수입 ${data.total.income}원</div>
+          <div class="income-outcome-filter-label-text">✓ 수입 ${data.total.income.toLocaleString("ko-KR")}원</div>
         </label>
 
         <input
@@ -36,7 +36,7 @@ export default class Filter {
           checked
         />
         <label class="income-outcome-filter-label right-label" for="outcome-filter-input">
-          <div class="income-outcome-filter-label-text">✓ 지출 ${data.total.outcome}원</div>
+          <div class="income-outcome-filter-label-text">✓ 지출 ${data.total.outcome.toLocaleString("ko-KR")}원</div>
         </label>
       </div>
     `;
