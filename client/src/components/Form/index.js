@@ -123,6 +123,9 @@ export default class Form {
     bindEvent('#is-outcome', 'click', () => {
       this.isIncomeClickHandler();
     });
+    bindEvent('.form-pill.left-pill.cancel-button', 'click', () => {
+      this.render(data);
+    });
     bindEvent('.form-pill.right-pill.submit-button', 'click', () => {
       this.submitHandler(data.userId);
     });
