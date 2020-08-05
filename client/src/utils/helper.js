@@ -10,4 +10,6 @@ export const getDailyString = (str) => {
 
 export const addLeadingZeros = (expectedLength, text) => {
   return '0'.repeat(expectedLength - text.toString().length) + text.toString();
-}
+};
+
+export const $ = document.querySelector.bind(document);
