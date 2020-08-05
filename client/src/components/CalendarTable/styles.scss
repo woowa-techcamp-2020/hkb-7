@@ -1,0 +1,51 @@
+.calendar-table {
+  box-sizing: border-box;
+  margin: auto;
+  border-radius: 10px;
+  width: calc(100% - 38px);
+  border: 1px solid var(--hkb-border-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 100px;
+  grid-template-rows: 30px;
+  overflow: hidden;
+}
+
+.calendar-table-day-bar {
+  position: relative;
+  height: 100%;
+  border: 1px solid var(--hkb-border-color);
+}
+
+.calendar-table-day {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.calendar-table-cell {
+  text-align: right;
+  padding: 10px;
+  border: 1px solid var(--hkb-border-color);
+  &.not-this-month {
+    color: var(--inactive-foreground-color);
+    background-color: var(--inactive-background-color);
+  }
+  &:nth-child(1) {
+    border-radius: 10px 0 0 0;
+  }
+  &:nth-child(7) {
+    border-radius: 0 10px 0 0;
+  }
+  &:nth-last-child(1) {
+    border-radius: 0 0 10px 0;
+  }
+  &:nth-last-child(7) {
+    border-radius: 0 0 0 10px;
+  }
+  &.today {
+    color: var(--focused-foreground-color);
+    background-color: var(--focused-background-color);
+  }
+}
