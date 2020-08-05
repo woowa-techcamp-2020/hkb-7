@@ -36,7 +36,7 @@ app.use(cors());
 app.use('/', router);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => res.redirect('/activity'));
+app.use((req, res, next) => next(createError(404)));
 
 // error handler
 app.use((err, req, res, next) => {
