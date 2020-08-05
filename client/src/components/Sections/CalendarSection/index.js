@@ -1,4 +1,5 @@
 import './styles.scss';
+import CalendarTable from 'components/CalendarTable';
 import { element } from 'utils/element';
 import { store } from 'models/store';
 
@@ -12,8 +13,11 @@ export default class CalendarSection {
       className: 'calendar-section',
     });
 
+    this.$CalendarTable = new CalendarTable(this.$CalendarSection);
     this.$target.appendChild(this.$CalendarSection);
   }
-
-  render(data) {}
+  
+  render(data) {
+    this.$CalendarTable.render(data);
+  }
 }
