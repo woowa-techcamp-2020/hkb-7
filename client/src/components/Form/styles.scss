@@ -76,6 +76,7 @@
 }
 
 .month-grid-container {
+  font-size: var(--hkb-font-small);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
