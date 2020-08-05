@@ -7,9 +7,7 @@ const { isAuthenticated } = require('../utils/auth');
 
 // router.use(isAuthenticated);
 router.post('/', wrapAsync(paymentMethodController.create));
-router.get('/:id', wrapAsync(paymentMethodController.findById));
-router.get('/', wrapAsync(paymentMethodController.findAll));
-router.put('/', wrapAsync(paymentMethodController.update));
+router.get('/:user_id', wrapAsync(paymentMethodController.findAll));
 router.delete('/:id', wrapAsync(paymentMethodController.delete));
 
 module.exports = router;
