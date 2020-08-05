@@ -18,6 +18,10 @@ class Store extends Observable {
       total: {},
       paymentMethods: [],
       categories: [],
+      filter: {
+        income: true,
+        outcome: true,
+      },
     };
     this.init(this.data.userId, this.data.year, this.data.month);
   }
@@ -51,6 +55,13 @@ class Store extends Observable {
   moveSection(tab) {
     this.data.path = tab;
     this.notify(this.data, 'moveSection');
+  }
+
+  clickFilter(isIncome) {
+    isIncome
+      ? (this.data.filter.income = !this.data.filter.income)
+      : (this.data.filter.outcome = !this.data.filter.outcome);
+    this.notify(this.data, 'clickFilter');
   }
 
   async moveMonth(month) {
