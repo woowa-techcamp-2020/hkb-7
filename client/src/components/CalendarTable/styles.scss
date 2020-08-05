@@ -18,6 +18,7 @@
 }
 
 .calendar-table-day {
+  font-size: var(--font-size-small);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,9 +26,19 @@
 }
 
 .calendar-table-cell {
-  text-align: right;
-  padding: 10px;
+  position: relative;
+  font-size: var(--font-size-small);
+  padding: 5px;
   border: 1px solid var(--hkb-border-color);
+  &:nth-child(7n-7) {
+    color: var(--hkb-blue);
+  }
+  &:nth-child(7n + 1) {
+    color: var(--hkb-red);
+  }
+  &:nth-last-child(7) {
+    border-radius: 0 0 0 10px;
+  }
   &.not-this-month {
     color: var(--inactive-foreground-color);
     background-color: var(--inactive-background-color);
@@ -44,8 +55,28 @@
   &:nth-last-child(7) {
     border-radius: 0 0 0 10px;
   }
-  &.today {
-    color: var(--focused-foreground-color);
-    background-color: var(--focused-background-color);
+}
+
+.today {
+  position: relative;
+  display: flex;
+  color: var(--focused-foreground-color);
+  &.todayLabel {
+    position: absolute;
+    right: 5px;
+  }
+}
+
+.calendar-table-cell-activity {
+  text-align: right;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+
+  .positive {
+    color: var(--hkb-green);
+  }
+  .negative {
+    color: var(--hkb-darkred);
   }
 }
