@@ -77,6 +77,10 @@ body {
   max-height: 40px;
 }
 
+.disabled {
+  display: none;
+}
+
 label,
 button {
   cursor: pointer;
