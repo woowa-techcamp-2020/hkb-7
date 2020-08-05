@@ -1,6 +1,5 @@
 import './styles.scss';
 import { element } from 'utils/element';
-import { html } from 'utils/html';
 import { store } from 'models/store';
 export default class Filter {
   constructor($target) {
@@ -15,7 +14,7 @@ export default class Filter {
   }
 
   render(data) {
-    this.$Filter.innerHTML = html`
+    this.$Filter.innerHTML = `
       <div class="income-outcome-filter">
         <input
           class="income-outcome-filter-input"
