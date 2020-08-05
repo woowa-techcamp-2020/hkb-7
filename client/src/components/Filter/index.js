@@ -1,11 +1,12 @@
 import './styles.scss';
 import { element } from 'utils/element';
 import { html } from 'utils/html';
-
+import { store } from 'models/store';
 export default class Filter {
   constructor($target) {
     this.$target = $target;
-
+    this.store = store;
+    this.store.subscribe((data) => this.render(data), 'moveMonth');
     this.$Filter = element('div', {
       className: 'filter',
     });
