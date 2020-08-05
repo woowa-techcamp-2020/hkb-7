@@ -76,6 +76,7 @@
 }
 
 .month-grid-container {
+  font-size: var(--hkb-font-small);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -103,7 +104,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .month-grid-date-label:hover {
