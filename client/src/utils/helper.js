@@ -5,3 +5,7 @@ export const findUnique = (inputArr, key) => {
 export const parseDate = (str) => {
   return str.slice(0, 10);
 };
+
+export const addLeadingZeros = (expectedLength, text) => {
+  return '0'.repeat(expectedLength - text.toString().length) + text.toString();
+}
