@@ -1,5 +1,5 @@
 import './styles.scss';
-import Filter from 'components/Filter';
+import { element } from 'utils/element';
 import { store } from 'models/store';
 
 export default class CalendarSection {
@@ -8,14 +8,12 @@ export default class CalendarSection {
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'moveMonth');
 
-    this.$Filter = new Filter(this.$target);
+    this.$CalendarSection = element('div', {
+      className: 'calendar-section',
+    });
+
+    this.$target.appendChild(this.$CalendarSection);
   }
 
-  init(data) {
-    this.$Filter.render(data);
-  }
-
-  render(data) {
-    this.$Filter.render(data);
-  }
+  render(data) {}
 }

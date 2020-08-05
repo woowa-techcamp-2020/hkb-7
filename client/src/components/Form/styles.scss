@@ -1,11 +1,15 @@
-.activity-form {
+.form {
   height: 100%;
   overflow: scroll;
 }
 
 .form-title {
-  margin: 20px 20px 10px 20px;
+  padding: 20px 20px 10px 20px;
+  position: sticky;
+  top: 0;
+  background: var(--hkb-white);
   font-size: var(--hkb-font-big);
+  z-index: 1;
 }
 
 .form-question {

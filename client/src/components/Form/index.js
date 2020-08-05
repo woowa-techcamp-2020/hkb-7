@@ -7,7 +7,7 @@ export default class Form {
     this.$target = $target;
 
     this.$Form = element('form', {
-      className: 'activity-form right-col',
+      className: 'form right-col',
     });
 
     this.$target.appendChild(this.$Form);

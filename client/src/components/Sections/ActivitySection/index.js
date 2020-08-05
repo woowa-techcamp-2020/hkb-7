@@ -1,5 +1,6 @@
 import './styles.scss';
 import ActivityTable from 'components/ActivityTable';
+import { element } from 'utils/element';
 import { store } from 'models/store';
 
 export default class ActivitySection {
@@ -8,13 +9,12 @@ export default class ActivitySection {
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'moveMonth');
 
-    this.$Form = new Form(this.$target);
-    this.$Filter = new Filter(this.$target);
-    this.$ActivityTable = new ActivityTable(this.$target);
-  }
+    this.$ActivitySection = element('div', {
+      className: 'activity-section',
+    });
 
-  init(data) {
-    this.$ActivityTable.render(data);
+    this.$ActivityTable = new ActivityTable(this.$ActivitySection);
+    this.$target.appendChild(this.$ActivitySection);
   }
 
   render(data) {

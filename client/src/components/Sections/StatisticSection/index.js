@@ -1,5 +1,5 @@
 import './styles.scss';
-import Filter from 'components/Filter';
+import { element } from 'utils/element';
 import { store } from 'models/store';
 
 export default class StatisticSection {
@@ -8,14 +8,12 @@ export default class StatisticSection {
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'moveMonth');
 
-    this.$Filter = new Filter(this.$target);
+    this.$StatisticSection = element('div', {
+      className: 'statistic-section',
+    });
+
+    this.$target.appendChild(this.$StatisticSection);
   }
 
-  init(data) {
-    this.$Filter.render(data);
-  }
-
-  render(data) {
-    this.$Filter.render(data);
-  }
+  render(data) {}
 }
