@@ -16,13 +16,17 @@ class Store extends Observable {
         },
       },
       total: {},
+      paymentMethods: [],
     };
     this.init(this.data.userId, this.data.year, this.data.month);
   }
 
   async init(userId, year, month) {
-    this.data = { ...this.data, ...(await this.fetchActivities(userId, year, month)) };
-    this.fetchPaymentMethods(userId);
+    this.data = {
+      ...this.data,
+      ...(await this.fetchActivities(userId, year, month)),
+      ...(await this.fetchPaymentMethods(userId)),
+    };
     this.notify(this.data, 'init');
   }
 
@@ -34,7 +38,7 @@ class Store extends Observable {
 
   async fetchPaymentMethods(userId) {
     const paymentMethods = await apis.getPaymentMethods(userId);
-    console.log(paymentMethods);
+    return { paymentMethods };
   }
 
   moveSection(tab) {
