@@ -2,6 +2,8 @@ export const findUnique = (inputArr, key) => {
   return inputArr.reduce((a, b) => (a.includes(b[key]) ? a : [...a, b[key]]), []);
 };
 
-export const parseDate = (str) => {
-  return str.slice(0, 10);
+export const getDailyString = (str) => {
+  const date = new Date(str);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  return `${date.getMonth() + 1}월 ${date.getDate()}일 ${days[date.getDay()]}요일`;
 };
