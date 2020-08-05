@@ -303,7 +303,7 @@ export default class Form {
       </div>
       <div class="form-question">결제 수단</div>
       <div class="form-answer">
-        <select class="form-pill form-field-long" name="form-date" id="form-date" required>
+        <select class="form-pill form-field-long" name="form-payment-method" id="form-payment-method" required>
           <option value="" selected disabled>결제 수단을 선택해주세요.</option>
           <option value="1">현대카드</option>
           <option value="2">카카오뱅크 계좌 이체</option>
