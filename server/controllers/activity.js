@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
   const activities = await Activity.findAll(
-    'activity.id, activity.price, activity.content, activity.date, category.name, category.is_income, payment_method.name',
+    'activity.id, activity.price, activity.content, activity.date, category.name as category, category.is_income, payment_method.name as payment',
     {
       'YEAR(date)': req.params.year,
       'MONTH(date)': req.params.month,
