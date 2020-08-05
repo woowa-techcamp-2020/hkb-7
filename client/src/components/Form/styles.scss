@@ -103,7 +103,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .month-grid-date-label:hover {
