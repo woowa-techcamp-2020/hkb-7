@@ -33,7 +33,8 @@ const GET = async (url = '', data) => await fetch(`${serverUrl}${url}${createQue
 const DELETE = async (url = '') => await fetch(`${serverUrl}${url}`, defaultOptions('DELETE'));
 
 export default {
-  getActivities: async (id, year, month) => (await (await GET(`/activity/${id}/${year}/${month}`)).json()).activities,
+  getActivities: async (userId, year, month) =>
+    (await (await GET(`/activity/${userId}/${year}/${month}`)).json()).activities,
   getPaymentMethods: async (userId) => (await (await GET(`/payment-method/${userId}`)).json()).paymentMethods,
   getCategories: async (userId) => (await (await GET(`/category/${userId}`)).json()).categories,
   createActivity: async (activity) => await (await POST(`/activity`, activity)).json(),
