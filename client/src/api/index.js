@@ -5,7 +5,7 @@ const defaultOptions = (method) => ({
   },
 });
 
-const serverUrl = 'http://localhost:3000';
+const serverUrl = 'http://13.124.84.117:3000';
 
 const createQuery = (data) => {
   return data
