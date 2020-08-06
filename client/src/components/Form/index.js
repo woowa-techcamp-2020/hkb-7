@@ -139,15 +139,37 @@ export default class Form {
         el.classList.remove('disabled');
       });
       $A('.outcome-category').forEach((el) => {
+        el.selected = false;
         el.classList.add('disabled');
       });
+      this.releaseCategorySelect(true);
     } else {
       $A('.income-category').forEach((el) => {
+        el.selected = false;
         el.classList.add('disabled');
       });
       $A('.outcome-category').forEach((el) => {
         el.classList.remove('disabled');
       });
+      this.releaseCategorySelect(false);
+    }
+  }
+
+  releaseCategorySelect(isIncome) {
+    if (!$('option[name=category]:checked')) {
+      return;
+    }
+    if (isIncome && $('option[name=category]:checked').className === 'outcome-category') {
+      $('.category-default').disabled = false;
+      $('.category-default').selected = 'selected';
+      $('.category-default').disabled = true;
+      return;
+    }
+    if (!isIncome && $('option[name=category]:checked').className === 'income-category') {
+      $('.category-default').disabled = false;
+      $('.category-default').selected = 'selected';
+      $('.category-default').disabled = true;
+      return;
     }
   }
 
