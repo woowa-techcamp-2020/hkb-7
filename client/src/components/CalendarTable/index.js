@@ -1,5 +1,6 @@
 import './styles.scss';
 import { addLeadingZeros } from 'utils/helper';
+import { highlightToday, processDate } from 'utils/days';
 import { element } from 'utils/element';
 import { html } from 'utils/html';
 
@@ -14,39 +15,8 @@ export default class CalendarTable {
     this.$target.appendChild(this.$CalendarTable);
   }
 
-  processDate(data) {
-    const lastMonthLastDate = new Date(data.year, data.month - 1, 0);
-    const thisMonthStartDate = new Date(data.year, data.month - 1, 1);
-    const thisMonthLastDate = new Date(data.year, data.month, 0);
-    const nextMonthFirstDate = new Date(data.year, data.month, 1);
-    return {
-      lastMonthLastDate: lastMonthLastDate,
-      thisMonthStartDate: thisMonthStartDate,
-      thisMonthLastDate: thisMonthLastDate,
-      nextMonthFirstDate: nextMonthFirstDate,
-    };
-  }
-
-  getTomorrow(date) {
-    let tomorrow = new Date();
-    return tomorrow.setDate(new Date().getDate() + 1);
-  }
-
-  highlightToday() {
-    let today = new Date();
-    let todayString = `${today.getFullYear()}-${addLeadingZeros(2, today.getMonth() + 1)}-${addLeadingZeros(
-      2,
-      today.getDate(),
-    )}`;
-    let todayCell = document.querySelector(`.date-${todayString}`);
-    if (todayCell) {
-      todayCell.classList.add('today');
-      todayCell.innerHTML += `<div class = "today todayLabel">today</div>`;
-    }
-  }
-
   render(data) {
-    const date = this.processDate(data);
+    const date = processDate(data);
     let calendarContents = [];
     let days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
@@ -99,6 +69,6 @@ export default class CalendarTable {
       }
     }
     this.$CalendarTable.innerHTML = calendarContents.join('');
-    this.highlightToday();
+    highlightToday();
   }
 }
