@@ -10,7 +10,7 @@ export default class Form {
   constructor($target) {
     this.$target = $target;
     this.store = store;
-    this.store.subscribe((data) => this.render(data), 'addActivity');
+    this.store.subscribe((data) => this.render(data), 'selectItem');
 
     this.$Form = element('form', {
       className: 'form right-col',
@@ -20,8 +20,9 @@ export default class Form {
   }
 
   render(data) {
+    const isCreate = data.mode === 'create' ? true : false;
     this.$Form.innerHTML = `
-      <div class="form-title">새로운 활동 추가하기</div>
+      <div class="form-title">${isCreate ? '새로운 활동 추가하기' : '활동 수정하기'}</div>
       <div class="form-question">유형</div>
       <div class="form-answer is-income">
         <input class="form-is-income-input" type="radio" value="1" name="is-income" id="is-income" required />
@@ -81,7 +82,7 @@ export default class Form {
       <div class="form-question">카테고리</div>
       <div class="form-answer">
         <select class="form-pill form-field-long" name="category" id="form-category" required>
-          <option value="" selected disabled>카테고리를 선택해주세요.</option>
+          <option class="category-default" value="" selected>카테고리를 선택해주세요.</option>
           ${data.categories
             .map((category) => {
               return formCategories(category.id, category.name, category.is_income);
@@ -109,14 +110,15 @@ export default class Form {
       <div class="form-question"></div>
       <div class="form-answer">
         <button class="form-pill left-pill cancel-button" type="button">
-          <div class="form-pill-text">취소</div>
+          <div class="form-pill-text ${isCreate ? 'cancel' : 'delete'}">${isCreate ? '취소' : '삭제'}</div>
         </button>
         <button class="form-pill right-pill submit-button" type="button">
-          <div class="form-pill-text">추가</div>
+          <div class="form-pill-text ${isCreate ? 'confirm' : 'modify'}">${isCreate ? '추가' : '수정'}</div>
         </button>
       </div>
       <div class="form-question"></div>
     `;
+
     bindEvent('#is-income', 'click', () => {
       this.isIncomeClickHandler();
     });

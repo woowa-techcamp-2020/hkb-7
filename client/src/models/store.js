@@ -24,6 +24,7 @@ class Store extends Observable {
         outcome: 'checked',
       },
       selectItem: null,
+      mode: 'create',
     };
     this.init(this.data.userId, this.data.year, this.data.month);
   }

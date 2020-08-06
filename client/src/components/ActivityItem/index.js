@@ -1,11 +1,14 @@
 import './styles.scss';
 import { element } from 'utils/element';
 import { bindEvent } from 'utils/bindEvent';
-import { $A } from 'utils/helper';
+import { store } from 'models/store';
 
 export default class ActivityItem {
   constructor($target, id) {
     this.$target = $target;
+    this.store = store;
+    this.store.subscribe((data) => this.applySelect(data), 'stateChange');
+
     this.id = id;
     this.$ActivityItem = element('div', {
       className: 'activity-day-item',
@@ -34,6 +37,18 @@ export default class ActivityItem {
       this.$ActivityItem.classList.add('selected');
       this.store.selectItem(this.id);
     });
+  }
+
+  applySelect(data) {
+    if (!data.selectItem) {
+      return;
+    }
+    if (data.selectItem.id !== this.id) {
+      return;
+    }
+    if ($(`#activity-day-item-${this.id}`)) {
+      $(`#activity-day-item-${this.id}`).classList.add('selected');
+    }
   }
 
   remove() {
