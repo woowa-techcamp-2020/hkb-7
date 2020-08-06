@@ -13,3 +13,5 @@ export const addLeadingZeros = (expectedLength, text) => {
 };
 
 export const $ = document.querySelector.bind(document);
+
+export const $A = document.querySelectorAll.bind(document);
