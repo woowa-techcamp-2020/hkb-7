@@ -1,9 +1,9 @@
 import './styles.scss';
 import { element } from 'utils/element';
 import MonthBar from 'components/MonthBar';
-import ActivitySection from 'components/sections/ActivitySection';
-import CalendarSection from 'components/sections/CalendarSection';
-import StatisticSection from 'components/sections/StatisticSection';
+import ActivitySection from 'components/Sections/ActivitySection';
+import CalendarSection from 'components/Sections/CalendarSection';
+import StatisticSection from 'components/Sections/StatisticSection';
 import { store } from 'models/store';
 
 export default class SectionContainer {
