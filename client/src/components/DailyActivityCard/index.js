@@ -28,7 +28,9 @@ export default class DailyActivityCard {
     this.$DailyActivitySummary.innerHTML = `
       <div class="activity-date">${getDailyString(dailyActivities[0].date)}</div>
       <div class="activity-stats">
-        <span class="positive">${dailyTotal.income}원</span> <span class="negative">-${dailyTotal.outcome}원</span> =
+        <span class="positive">${dailyTotal.income.toLocaleString(
+          'ko-KR',
+        )}원</span> <span class="negative">-${dailyTotal.outcome.toLocaleString('ko-KR')}원</span> =
         <span class="${sum < 0 ? 'negative' : 'positive'}">${sum}원</span>
       </div>
     `;

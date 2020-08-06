@@ -22,7 +22,7 @@ export default class ActivityItem {
       <div class="activity-day-payment-method">${payment}</div>
       <div class="activity-day-item-price ${is_income ? 'positive' : 'negative'}">${
       is_income ? '' : '-'
-    }${price}원</div>
+    }${price.toLocaleString("ko-KR")}원</div>
     `;
   }
 
