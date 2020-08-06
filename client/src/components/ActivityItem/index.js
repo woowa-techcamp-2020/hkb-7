@@ -32,6 +32,7 @@ export default class ActivityItem {
         el.classList.remove('selected');
       });
       this.$ActivityItem.classList.add('selected');
+      this.store.selectItem(this.id);
     });
   }
 

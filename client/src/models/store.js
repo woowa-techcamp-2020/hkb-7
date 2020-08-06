@@ -23,6 +23,7 @@ class Store extends Observable {
         income: 'checked',
         outcome: 'checked',
       },
+      selectItem: null,
     };
     this.init(this.data.userId, this.data.year, this.data.month);
   }
@@ -115,6 +116,13 @@ class Store extends Observable {
     await apis.createActivity(info);
     this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
     this.notify(this.data, 'stateChange');
+  }
+
+  async selectItem(activityId) {
+    const activity = await apis.getActivity(activityId);
+    this.data.selectItem = activity;
+    this.data.mode = 'modify';
+    this.notify(this.data, 'selectItem');
   }
 
   calcTotal(activities) {

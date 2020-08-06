@@ -8,6 +8,7 @@ const { isAuthenticated } = require('../utils/auth');
 // router.use(isAuthenticated);
 router.post('/', wrapAsync(activityController.create));
 router.get('/:id/:year/:month', wrapAsync(activityController.findAll));
+router.get('/:id', wrapAsync(activityController.findById));
 router.put('/', wrapAsync(activityController.update));
 router.delete('/:id', wrapAsync(activityController.delete));
 
