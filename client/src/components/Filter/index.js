@@ -7,7 +7,6 @@ export default class Filter {
   constructor($target) {
     this.$target = $target;
     this.store = store;
-    this.store.subscribe((data) => this.render(data), 'moveMonth');
 
     this.$Filter = element('div', {
       className: 'filter',
@@ -24,7 +23,7 @@ export default class Filter {
           type="checkbox"
           name="income-filter-input"
           id="income-filter-input"
-          ${data.filter.income ? 'checked' : ''}
+          ${data.filter.income}
         />
         <label class="income-filter-label left-label" for="income-filter-input">
           <div class="income-filter-label-text">✓ 수입 ${data.total.income.toLocaleString('ko-KR')}원</div>
@@ -35,7 +34,7 @@ export default class Filter {
           type="checkbox"
           name="outcome-filter-input"
           id="outcome-filter-input"
-          ${data.filter.outcome ? 'checked' : ''}
+          ${data.filter.outcome}
         />
         <label class="outcome-filter-label right-label" for="outcome-filter-input">
           <div class="outcome-filter-label-text">✓ 지출 ${data.total.outcome.toLocaleString('ko-KR')}원</div>
@@ -44,14 +43,14 @@ export default class Filter {
     `;
 
     bindEvent('.income-filter-label.left-label', 'click', () => {
-      this.incomeFilterClickHandler(true);
+      this.filterClickHandler(true, data.filter.income);
     });
     bindEvent('.outcome-filter-label.right-label', 'click', () => {
-      this.incomeFilterClickHandler(false);
+      this.filterClickHandler(false, data.filter.outcome);
     });
   }
 
-  incomeFilterClickHandler(isIncome) {
-    this.store.clickFilter(isIncome);
+  filterClickHandler(isIncome, prevState) {
+    this.store.clickFilter(isIncome, prevState);
   }
 }
