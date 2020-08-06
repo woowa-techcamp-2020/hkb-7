@@ -163,6 +163,16 @@ export default class Form {
       price: $('input[name=price]').value,
       content: $('textarea[name=content]').value,
     };
-    this.store.addActivity(info);
+
+  validateInput() {
+    if (!$('input[name=is-income]:checked')) return false;
+    if (!$('option[name=year]:checked')) return false;
+    if (!$('option[name=month]:checked')) return false;
+    if (!$('input[name=date]:checked')) return false;
+    if (!$('option[name=payment-method]:checked')) return false;
+    if (!$('option[name=category]:checked')) return false;
+    if (!$('input[name=price]')) return false;
+    if (!$('textarea[name=content]')) return false;
+    return true;
   }
 }
