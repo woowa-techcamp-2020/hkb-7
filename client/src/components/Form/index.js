@@ -2,7 +2,7 @@ import './styles.scss';
 import { element } from 'utils/element';
 import { store } from 'models/store';
 import { bindEvent } from 'utils/bindEvent';
-import { $, $A } from 'utils/helper';
+import { $, $A, getYearMonthDate } from 'utils/helper';
 import { formYears, formMonths, formDays, formDates, formPaymentMethods, formCategories } from 'utils/template';
 import { years, months, days, dates } from 'utils/constant';
 

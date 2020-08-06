@@ -15,3 +15,10 @@ export const addLeadingZeros = (expectedLength, text) => {
 export const $ = document.querySelector.bind(document);
 
 export const $A = document.querySelectorAll.bind(document);
+
+export const getYearMonthDate = (str) => {
+  const year = new Date(str).getFullYear();
+  const month = new Date(str).getMonth() + 1;
+  const date = new Date(str).getDate();
+  return { year, month, date };
+};
