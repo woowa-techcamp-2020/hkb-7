@@ -3,9 +3,6 @@ var router = express.Router();
 
 const activityController = require('../controllers/activity');
 const { wrapAsync } = require('../../shared/utils/helper');
-// const { isLoggedIn } = require('../utils/auth');
-
-//router.use(isLoggedIn);
 
 router.post('/', wrapAsync(activityController.create));
 router.get('/:token/:year/:month', wrapAsync(activityController.findAll));
