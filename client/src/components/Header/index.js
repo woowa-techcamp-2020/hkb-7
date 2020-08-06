@@ -1,6 +1,8 @@
 import './styles.scss';
 import { element } from 'utils/element';
+import { bindEvent } from 'utils/bindEvent';
 import { html } from 'utils/html';
+import webpack from 'imgs/webpack.png';
 
 export default class Header {
   constructor($target) {
@@ -41,11 +43,17 @@ export default class Header {
         </div>
         <div class="right-col">
           <button class="profile">
-            <img class="profile-pic" src="./public/images/webpack.png" alt="" srcset="" />
-            <div class="profile-name">사용자</div>
+            <img class="profile-pic" src="${webpack}" alt="" srcset="" />
+            <div class="profile-name">로그아웃</div>
           </button>
         </div>
       </div>
     `;
+    bindEvent('button.profile', 'click', () => {
+      console.log('BEFORE CLEARING localStorage:', localStorage);
+      localStorage.clear();
+      console.log('AFTER  CLEARING localStorage:', localStorage);
+      location.reload();
+    });
   }
 }
