@@ -47,6 +47,9 @@ module.exports = {
       },
       hash: true,
     }),
+    new webpack.DefinePlugin({
+      __API__: JSON.stringify('http://localhost:3000'),
+    }),
     new webpack.BannerPlugin({
       banner: () => {
         const commit = childProcess.execSync('git rev-parse --short HEAD');

@@ -5,7 +5,7 @@ const defaultOptions = (method) => ({
   },
 });
 
-const serverUrl = 'http://localhost:3000';
+const serverUrl = __API__;
 
 const createQuery = (data) => {
   return data
