@@ -28,7 +28,7 @@ export default class DailyActivityCard {
         <span class="positive">${dailyTotal.income.toLocaleString(
           'ko-KR',
         )}원</span> <span class="negative">-${dailyTotal.outcome.toLocaleString('ko-KR')}원</span> =
-        <span class="${sum < 0 ? 'negative' : 'positive'}">${sum}원</span>
+        <span class="${sum < 0 ? 'negative' : 'positive'}">${sum.toLocaleString('ko-KR')}원</span>
       </div>
     `;
     this.createDailyActivityList(dailyActivities);
