@@ -1,4 +1,5 @@
 const Category = require('../models/category');
+const { readIdInJwt } = require('../utils/auth');
 
 exports.create = async (req, res) => {
   const category = await Category.create(req.body);
@@ -6,9 +7,11 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const categories = await Category.findAll('id, name, is_income', { user_id: req.params.user_id });
+  const userId = readIdInJwt(req.params.token);
+  const categories = await Category.findAll('id, name, is_income', { user_id: userId });
   res.send({ categories });
 };
+
 
 exports.update = async (req, res) => {
   await Category.update(req.body);

@@ -1,4 +1,5 @@
 const PaymentMethod = require('../models/payment-method');
+const { readIdInJwt } = require('../utils/auth');
 
 exports.create = async (req, res) => {
   const paymentMethod = await PaymentMethod.create(req.body);
@@ -6,7 +7,8 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const paymentMethods = await PaymentMethod.findAll('id, name', { user_id: req.params.user_id });
+  const userId = readIdInJwt(req.params.token);
+  const paymentMethods = await PaymentMethod.findAll('id, name', { user_id: userId });
   res.send({ paymentMethods });
 };
 

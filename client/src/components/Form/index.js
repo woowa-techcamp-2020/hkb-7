@@ -127,7 +127,7 @@ export default class Form {
       this.render(data);
     });
     bindEvent('.form-pill.right-pill.submit-button', 'click', () => {
-      this.submitHandler(data.userId);
+      this.submitHandler();
     });
   }
 
@@ -149,9 +149,8 @@ export default class Form {
     }
   }
 
-  submitHandler(userId) {
+  submitHandler() {
     const info = {
-      user_id: userId,
       is_income: $('input[name=is-income]:checked').value,
       date: `${$('option[name=year]:checked').value}-${$('option[name=month]:checked').value}-${
         $('input[name=date]:checked').value

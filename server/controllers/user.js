@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const { readIdInJwt } = require('../utils/auth');
 
 exports.create = async (req, res) => {
   const salt = await bcrypt.genSalt(+process.env.SALTROUNDS);
@@ -8,8 +9,14 @@ exports.create = async (req, res) => {
   res.send(user);
 };
 
+exports.googleCreate = async (req, res) => {
+  const user = await User.create(req);
+  res.send(user);
+};
+
 exports.findById = async (req, res) => {
-  const user = await User.findOne('*', { id: req.user.id });
+  const userId = readIdInJwt(req.params.id);
+  const user = await User.findOne('*', { id: userId });
   if (!user) res.status(404).send('user not found');
   else res.send(user);
 };
