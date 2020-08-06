@@ -34,5 +34,7 @@ const DELETE = async (url = '') => await fetch(`${serverUrl}${url}`, defaultOpti
 
 export default {
   getActivities: async (id, year, month) => (await (await GET(`/activity/${id}/${year}/${month}`)).json()).activities,
-  getPaymentMethods: async (id) => await (await GET(`/payment-method/${user_id}`)).json(),
+  getPaymentMethods: async (userId) => (await (await GET(`/payment-method/${userId}`)).json()).paymentMethods,
+  getCategories: async (userId) => (await (await GET(`/category/${userId}`)).json()).categories,
+  createActivity: async (activity) => await (await POST(`/activity`, activity)).json(),
 };

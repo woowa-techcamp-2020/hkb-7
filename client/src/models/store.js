@@ -16,12 +16,23 @@ class Store extends Observable {
         },
       },
       total: {},
+      paymentMethods: [],
+      categories: [],
+      filter: {
+        income: true,
+        outcome: true,
+      },
     };
     this.init(this.data.userId, this.data.year, this.data.month);
   }
 
   async init(userId, year, month) {
-    this.data = { ...this.data, ...(await this.fetchActivities(userId, year, month)) };
+    this.data = {
+      ...this.data,
+      ...(await this.fetchActivities(userId, year, month)),
+      ...(await this.fetchPaymentMethods(userId)),
+      ...(await this.fetchCategories(userId)),
+    };
     this.notify(this.data, 'init');
   }
 
@@ -31,9 +42,26 @@ class Store extends Observable {
     return { total, activities: this.classifyDate(activities) };
   }
 
+  async fetchPaymentMethods(userId) {
+    const paymentMethods = await apis.getPaymentMethods(userId);
+    return { paymentMethods };
+  }
+
+  async fetchCategories(userId) {
+    const categories = await apis.getCategories(userId);
+    return { categories };
+  }
+
   moveSection(tab) {
     this.data.path = tab;
     this.notify(this.data, 'moveSection');
+  }
+
+  clickFilter(isIncome) {
+    isIncome
+      ? (this.data.filter.income = !this.data.filter.income)
+      : (this.data.filter.outcome = !this.data.filter.outcome);
+    this.notify(this.data, 'clickFilter');
   }
 
   async moveMonth(month) {
@@ -47,6 +75,12 @@ class Store extends Observable {
     }
     this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
     this.notify(this.data, 'moveMonth');
+  }
+
+  async addActivity(info) {
+    await apis.createActivity(info);
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.notify(this.data, 'stateChange');
   }
 
   calcTotal(activities) {

@@ -5,14 +5,8 @@ exports.create = async (req, res) => {
   res.send(category);
 };
 
-exports.findById = async (req, res) => {
-  const category = await Category.findOne('*', { id: req.params.id });
-  if (!category) res.status(404).send('category not found');
-  else res.send(category);
-};
-
 exports.findAll = async (req, res) => {
-  const categories = await Category.findAll('id, name, type');
+  const categories = await Category.findAll('id, name, is_income', { user_id: req.params.user_id });
   res.send({ categories });
 };
 
