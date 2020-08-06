@@ -8,6 +8,7 @@ export default class ActivityTable {
     this.$target = $target;
     this.store = store;
     this.store.subscribe((data) => this.render(data), 'moveMonth');
+    this.store.subscribe((data) => this.render(data), 'clickFilter');
 
     this.$ActivityTable = element('div', {
       className: 'activity-table',

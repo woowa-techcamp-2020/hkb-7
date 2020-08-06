@@ -20,7 +20,19 @@ class Activity extends Model {
       },
     );
     this.tableName = 'activity';
-    console.log(`${this.tableName} has been instantiated.`);
+  }
+
+  async findOne(attributes, where) {
+    const queryStmt = `
+      SELECT ${attributes}
+      FROM ${this.tableName}
+      LEFT JOIN category ON category.id = activity.category_id
+      ${`WHERE ${Object.entries(where)
+        .map((o) => `${o[0]}=${o[1]}`)
+        .join(' AND ')}`}
+      ORDER BY date DESC   
+    `;
+    return (await this._pool.query(queryStmt))[0][0];
   }
 
   async findAll(attributes, where) {

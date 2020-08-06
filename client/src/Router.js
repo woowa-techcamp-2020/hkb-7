@@ -15,6 +15,9 @@ export default class Router {
     this.store.subscribe((data) => {
       history.pushState(data, '', data.path);
     }, 'clickFilter');
+    this.store.subscribe((data) => {
+      history.pushState(data, '', data.path);
+    }, 'selectItem');
 
     window.addEventListener('popstate', (event) => {
       this.store.notify(event.state, 'stateChange');

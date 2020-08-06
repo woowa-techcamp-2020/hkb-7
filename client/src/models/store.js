@@ -15,13 +15,16 @@ class Store extends Observable {
           dailyTotal: null,
         },
       },
+      rawActivities: [],
       total: {},
       paymentMethods: [],
       categories: [],
       filter: {
-        income: true,
-        outcome: true,
+        income: 'checked',
+        outcome: 'checked',
       },
+      selectItem: null,
+      mode: 'create',
     };
     // this.init(this.data.token, this.data.year, this.data.month);
   }
@@ -40,7 +43,8 @@ class Store extends Observable {
   async fetchActivities(token, year, month) {
     const activities = await apis.getActivities(token, year, month);
     const total = this.calcTotal(activities);
-    return { total, activities: this.classifyDate(activities) };
+    this.data.rawActivities = activities;
+    return { total, ...this.applyFilter({ ...this.data.filter }) };
   }
 
   async fetchPaymentMethods(token) {
@@ -58,11 +62,43 @@ class Store extends Observable {
     this.notify(this.data, 'moveSection');
   }
 
-  clickFilter(isIncome) {
-    isIncome
-      ? (this.data.filter.income = !this.data.filter.income)
-      : (this.data.filter.outcome = !this.data.filter.outcome);
+  clickFilter(isIncome, prevState) {
+    isIncome ? this.toggleIncomeFilter(prevState) : this.toggleOutcomeFilter(prevState);
+  }
+
+  toggleIncomeFilter(prevState) {
+    const state = prevState ? '' : 'checked';
+    this.data.filter.income = state;
+    this.data = { ...this.data, ...this.applyFilter({ ...this.data.filter }) };
     this.notify(this.data, 'clickFilter');
+  }
+
+  toggleOutcomeFilter(prevState) {
+    const state = prevState ? '' : 'checked';
+    this.data.filter.outcome = state;
+    this.data = { ...this.data, ...this.applyFilter({ ...this.data.filter }) };
+    this.notify(this.data, 'clickFilter');
+  }
+
+  applyFilter({ income, outcome }) {
+    const temp = [...this.data.rawActivities];
+    if (!income) {
+      this.data.rawActivities = this.data.rawActivities.reduce((acc, cur) => {
+        if (cur.is_income === 1) {
+          return acc;
+        }
+        return [...acc, cur];
+      }, []);
+    }
+    if (!outcome) {
+      this.data.rawActivities = this.data.rawActivities.reduce((acc, cur) => {
+        if (cur.is_income === 0) {
+          return acc;
+        }
+        return [...acc, cur];
+      }, []);
+    }
+    return { activities: this.classifyDate(this.data.rawActivities), rawActivities: temp };
   }
 
   async moveMonth(month) {
@@ -83,6 +119,29 @@ class Store extends Observable {
     await apis.createActivity(info);
     this.data = { ...this.data, ...(await this.fetchActivities(this.data.token, this.data.year, this.data.month)) };
     this.notify(this.data, 'stateChange');
+  }
+
+  async modifyActivity(info) {
+    await apis.updateActivity(info);
+    this.data.selectItem = null;
+    this.data.mode = 'create';
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.notify(this.data, 'stateChange');
+  }
+
+  async removeActivity(item) {
+    await apis.deleteActivity(item.id);
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.data.selectItem = null;
+    this.data.mode = 'create';
+    this.notify(this.data, 'stateChange');
+  }
+
+  async selectItem(activityId) {
+    const activity = await apis.getActivity(activityId);
+    this.data.selectItem = activity;
+    this.data.mode = 'modify';
+    this.notify(this.data, 'selectItem');
   }
 
   calcTotal(activities) {

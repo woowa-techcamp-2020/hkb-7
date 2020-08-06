@@ -1,12 +1,12 @@
 export const formYears = (year) => {
   return `
-    <option name="year" value="${year}">${year}년</option>
+    <option class="year-${year}" name="year" value="${year}">${year}년</option>
   `;
 };
 
 export const formMonths = (month) => {
   return `
-    <option name="month" value="${month}">${month}월</option>
+    <option class="month-${month}" name="month" value="${month}">${month}월</option>
   `;
 };
 
@@ -31,14 +31,14 @@ export const formDates = (date) => {
 
 export const formPaymentMethods = (id, name) => {
   return `
-    <option name="payment-method" value="${id}">${name}</option>
+    <option class="payment-method-${id}"name="payment-method" value="${id}">${name}</option>
   `;
 };
 
 export const formCategories = (id, name, is_income) => {
   return `
-    <option class="disabled ${
-      is_income ? 'income-category' : 'outcome-category'
-    }" name="category" value="${id}">${name}</option>
+    <option id="category-${id}"class="disabled ${
+    is_income ? 'income-category' : 'outcome-category'
+  }" name="category" value="${id}">${name}</option>
   `;
 };

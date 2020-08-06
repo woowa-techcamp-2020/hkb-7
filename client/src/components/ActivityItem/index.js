@@ -1,10 +1,17 @@
 import './styles.scss';
 import { element } from 'utils/element';
+import { bindEvent } from 'utils/bindEvent';
+import { $, $A } from 'utils/helper';
+import { store } from 'models/store';
 
 export default class ActivityItem {
   constructor($target, id) {
     this.$target = $target;
+    this.store = store;
+    this.store.subscribe((data) => this.applySelect(data), 'stateChange');
+    this.store.subscribe((data) => this.applySelect(data), 'moveMonth');
 
+    this.id = id;
     this.$ActivityItem = element('div', {
       className: 'activity-day-item',
       id: `activity-day-item-${id}`,
@@ -22,8 +29,28 @@ export default class ActivityItem {
       <div class="activity-day-payment-method">${payment}</div>
       <div class="activity-day-item-price ${is_income ? 'positive' : 'negative'}">${
       is_income ? '' : '-'
-    }${price.toLocaleString("ko-KR")}원</div>
+    }${price.toLocaleString('ko-KR')}원</div>
     `;
+
+    bindEvent(`#activity-day-item-${this.id}`, 'click', () => {
+      $A('.activity-day-item').forEach((el) => {
+        el.classList.remove('selected');
+      });
+      this.$ActivityItem.classList.add('selected');
+      this.store.selectItem(this.id);
+    });
+  }
+
+  applySelect(data) {
+    if (!data.selectItem) {
+      return;
+    }
+    if (data.selectItem.id !== this.id) {
+      return;
+    }
+    if ($(`#activity-day-item-${this.id}`)) {
+      $(`#activity-day-item-${this.id}`).classList.add('selected');
+    }
   }
 
   remove() {
