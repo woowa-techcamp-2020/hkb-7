@@ -1,10 +1,12 @@
 import './styles.scss';
 import { element } from 'utils/element';
+import { bindEvent } from 'utils/bindEvent';
+import { $A } from 'utils/helper';
 
 export default class ActivityItem {
   constructor($target, id) {
     this.$target = $target;
-
+    this.id = id;
     this.$ActivityItem = element('div', {
       className: 'activity-day-item',
       id: `activity-day-item-${id}`,
@@ -22,8 +24,15 @@ export default class ActivityItem {
       <div class="activity-day-payment-method">${payment}</div>
       <div class="activity-day-item-price ${is_income ? 'positive' : 'negative'}">${
       is_income ? '' : '-'
-    }${price.toLocaleString("ko-KR")}원</div>
+    }${price.toLocaleString('ko-KR')}원</div>
     `;
+
+    bindEvent(`#activity-day-item-${this.id}`, 'click', () => {
+      $A('.activity-day-item').forEach((el) => {
+        el.classList.remove('selected');
+      });
+      this.$ActivityItem.classList.add('selected');
+    });
   }
 
   remove() {
