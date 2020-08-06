@@ -5,6 +5,7 @@ class Activity extends Model {
     super(
       {
         id: { dataType: 'int', required: false },
+        price: { dataType: 'int', required: true },
         content: { dataType: 'varchar', required: true },
         date: { dataType: 'date', required: true },
         user_id: { dataType: 'int', required: true },

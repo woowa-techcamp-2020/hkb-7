@@ -2,10 +2,13 @@ import './styles.scss';
 import { getDailyString } from 'utils/helper';
 import { element } from 'utils/element';
 import ActivityItem from 'components/ActivityItem';
+import { store } from 'models/store';
 
 export default class DailyActivityCard {
   constructor($target, day) {
     this.$target = $target;
+    this.store = store;
+    this.store.subscribe((data) => this.hideCard(data), 'clickFilter');
 
     this.$DailyActivityCard = element('div', {
       className: 'daily-activity-card',
@@ -40,6 +43,13 @@ export default class DailyActivityCard {
       list[item.id].render({ ...item });
       return list;
     }, {});
+  }
+
+  hideCard(data) {
+    console.log(data);
+    if (!data.filter.income && !data.filter.outcome) {
+      this.$DailyActivityCard.classList.add('disabled');
+    }
   }
 
   remove() {
