@@ -10,6 +10,7 @@ export default class Form {
   constructor($target) {
     this.$target = $target;
     this.store = store;
+    this.store.subscribe((data) => this.render(data), 'stateChange');
     this.store.subscribe((data) => this.render(data), 'selectItem');
 
     this.$Form = element('form', {
@@ -125,12 +126,19 @@ export default class Form {
     bindEvent('#is-outcome', 'click', () => {
       this.isIncomeClickHandler();
     });
-    bindEvent('.form-pill.left-pill.cancel-button', 'click', () => {
-      this.render(data);
-    });
     bindEvent('.form-pill.right-pill.submit-button', 'click', () => {
-      this.submitHandler(data.userId);
+      this.submitHandler(data);
     });
+    if (isCreate) {
+      bindEvent('.form-pill.left-pill.cancel-button', 'click', () => {
+        this.render(data);
+      });
+    } else {
+      bindEvent('.form-pill.left-pill.cancel-button', 'click', () => {
+        this.store.removeActivity(data.selectItem);
+      });
+      this.modifyMode(data.selectItem);
+    }
   }
 
   isIncomeClickHandler() {
@@ -173,9 +181,26 @@ export default class Form {
     }
   }
 
-  submitHandler(userId) {
+  modifyMode(data) {
+    const date = getYearMonthDate(data.date);
+    data.is_income ? ($('#is-income').checked = 'checked') : ($('#is-outcome').checked = 'checked');
+    this.isIncomeClickHandler();
+    $(`.year-${date.year}`).selected = 'selected';
+    $(`.month-${date.month}`).selected = 'selected';
+    $(`#month-grid-date-input-${date.date}`).checked = 'checked';
+    $(`.payment-method-${data.payment_method_id}`).selected = 'selected';
+    $(`#category-${data.category_id}`).selected = 'selected';
+    $('#form-price').value = data.price;
+    $('.form-pill.form-contents').value = data.content;
+  }
+
+  submitHandler(data) {
+    const isCreate = data.mode === 'create' ? true : false;
+    if (!this.validateInput()) {
+      alert('입력 값을 확인하세요');
+      return;
+    }
     const info = {
-      user_id: userId,
       is_income: $('input[name=is-income]:checked').value,
       date: `${$('option[name=year]:checked').value}-${$('option[name=month]:checked').value}-${
         $('input[name=date]:checked').value
@@ -185,6 +210,9 @@ export default class Form {
       price: $('input[name=price]').value,
       content: $('textarea[name=content]').value,
     };
+    isCreate ? (info.user_id = data.userId) : (info.id = data.selectItem.id);
+    isCreate ? this.store.addActivity(info) : this.store.modifyActivity(info);
+  }
 
   validateInput() {
     if (!$('input[name=is-income]:checked')) return false;
