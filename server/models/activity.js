@@ -20,7 +20,6 @@ class Activity extends Model {
       },
     );
     this.tableName = 'activity';
-    console.log(`${this.tableName} has been instantiated.`);
   }
 
   async findAll(attributes, where) {

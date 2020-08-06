@@ -16,7 +16,6 @@ class PaymentMethod extends Model {
       },
     );
     this.tableName = 'payment_method';
-    console.log(`${this.tableName} has been instantiated.`);
   }
 }
 

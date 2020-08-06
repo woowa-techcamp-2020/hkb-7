@@ -107,7 +107,6 @@ class Store extends Observable {
       this.data.month = 1;
       this.data.year++;
     }
-    console.log(month);
     this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
     this.notify(this.data, 'moveMonth');
   }
