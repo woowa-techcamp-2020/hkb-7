@@ -39,4 +39,6 @@ export default {
   getPaymentMethods: async (userId) => (await (await GET(`/payment-method/${userId}`)).json()).paymentMethods,
   getCategories: async (userId) => (await (await GET(`/category/${userId}`)).json()).categories,
   createActivity: async (activity) => await (await POST(`/activity`, activity)).json(),
+  updateActivity: async (activity) => await (await PUT(`/activity`, activity)).json(),
+  deleteActivity: async (id) => await (await DELETE(`/activity/${id}`)).json(),
 };

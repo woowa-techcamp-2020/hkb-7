@@ -1,6 +1,7 @@
 import './styles.scss';
 import { element } from 'utils/element';
 import { bindEvent } from 'utils/bindEvent';
+import { $, $A } from 'utils/helper';
 import { store } from 'models/store';
 
 export default class ActivityItem {
@@ -8,6 +9,7 @@ export default class ActivityItem {
     this.$target = $target;
     this.store = store;
     this.store.subscribe((data) => this.applySelect(data), 'stateChange');
+    this.store.subscribe((data) => this.applySelect(data), 'moveMonth');
 
     this.id = id;
     this.$ActivityItem = element('div', {
