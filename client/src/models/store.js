@@ -5,7 +5,7 @@ class Store extends Observable {
   constructor() {
     super();
     this.data = {
-      userId: 9,
+      token: localStorage.getItem('token'),
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
       path: location.pathname,
@@ -26,33 +26,34 @@ class Store extends Observable {
       selectItem: null,
       mode: 'create',
     };
-    this.init(this.data.userId, this.data.year, this.data.month);
+    // this.init(this.data.token, this.data.year, this.data.month);
   }
 
-  async init(userId, year, month) {
+  async init(token) {
+    this.data.token = token;
     this.data = {
       ...this.data,
-      ...(await this.fetchActivities(userId, year, month)),
-      ...(await this.fetchPaymentMethods(userId)),
-      ...(await this.fetchCategories(userId)),
+      ...(await this.fetchActivities(token, this.data.year, this.data.month)),
+      ...(await this.fetchPaymentMethods(token)),
+      ...(await this.fetchCategories(token)),
     };
     this.notify(this.data, 'init');
   }
 
-  async fetchActivities(userId, year, month) {
-    const activities = await apis.getActivities(userId, year, month);
+  async fetchActivities(token, year, month) {
+    const activities = await apis.getActivities(token, year, month);
     const total = this.calcTotal(activities);
     this.data.rawActivities = activities;
     return { total, ...this.applyFilter({ ...this.data.filter }) };
   }
 
-  async fetchPaymentMethods(userId) {
-    const paymentMethods = await apis.getPaymentMethods(userId);
+  async fetchPaymentMethods(token) {
+    const paymentMethods = await apis.getPaymentMethods(token);
     return { paymentMethods };
   }
 
-  async fetchCategories(userId) {
-    const categories = await apis.getCategories(userId);
+  async fetchCategories(token) {
+    const categories = await apis.getCategories(token);
     return { categories };
   }
 
@@ -109,13 +110,14 @@ class Store extends Observable {
       this.data.month = 1;
       this.data.year++;
     }
-    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.token, this.data.year, this.data.month)) };
     this.notify(this.data, 'moveMonth');
   }
 
   async addActivity(info) {
+    info.token = this.data.token;
     await apis.createActivity(info);
-    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.token, this.data.year, this.data.month)) };
     this.notify(this.data, 'stateChange');
   }
 

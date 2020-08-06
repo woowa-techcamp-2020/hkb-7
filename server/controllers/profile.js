@@ -1,4 +1,5 @@
 const Profile = require('../models/profile');
+const { readIdInJwt } = require('../utils/auth');
 
 exports.create = async (req, res) => {
   const profile = await Profile.create(req.body);
@@ -6,7 +7,8 @@ exports.create = async (req, res) => {
 };
 
 exports.findById = async (req, res) => {
-  const profile = await Profile.findOne('*', { id: req.params.id });
+  const userId = readIdInJwt(req.params.id);
+  const profile = await Profile.findOne('*', { id: userId });
   if (!profile) res.status(404).send('profile not found');
   else res.send(profile);
 };
