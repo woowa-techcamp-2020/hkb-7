@@ -16,8 +16,6 @@ router.get(
 );
 router.post('/login', authenticateLocal, wrapAsync(userController.findById));
 
-// router.use(isLoggedIn);
-
 router.get('/:id', wrapAsync(userController.findById));
 router.get('/', wrapAsync(userController.findAll));
 router.put('/', wrapAsync(userController.update));
