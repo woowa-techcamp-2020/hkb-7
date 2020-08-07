@@ -5,7 +5,7 @@
 ![Mockup](docs/images/compressed-mockup.png)
 
 <div>
-<a href="http://13.124.84.117:3000/" target="_blank">
+<a href="http://ec2-13-124-84-117.ap-northeast-2.compute.amazonaws.com:3000" target="_blank">
 <img src="https://raw.githubusercontent.com/narative/gatsby-theme-novela-example/master/assets/gatsby-theme-novela-cta-demo.jpg" alt="gatsby-novela-theme live demo" width="295px" />
 </a>
 </div>
