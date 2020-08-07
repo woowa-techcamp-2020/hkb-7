@@ -14,8 +14,14 @@ router.use('/category', categoryRouter);
 router.use('/payment-method', paymentMethodRouter);
 router.use('/profile', profileRouter);
 
-router.use('/statistic', express.static(path.join(__dirname, '../../client/dist')));
-router.use('/calendar', express.static(path.join(__dirname, '../../client/dist')));
-router.use('/activity', express.static(path.join(__dirname, '../../client/dist')));
+router.get('/activity', (req, res) => {
+  res.render('index.html');
+});
+router.get('/calendar', (req, res) => {
+  res.render('index.html');
+});
+router.get('/statistic', (req, res) => {
+  res.render('index.html');
+});
 
 module.exports = router;
