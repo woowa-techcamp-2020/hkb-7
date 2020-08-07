@@ -23,7 +23,10 @@ export default class Form {
   render(data) {
     const isCreate = data.mode === 'create' ? true : false;
     this.$Form.innerHTML = `
-      <div class="form-title">${isCreate ? '새로운 활동 추가하기' : '활동 수정하기'}</div>
+      <div class = form-title-container>
+      <div class="form-title">${isCreate ? '활동 추가' : '활동 수정'}</div>
+      ${isCreate ? '' : '<button class="form-title edit-cancel-button">취소</button>'}
+      </div>
       <div class="form-question">유형</div>
       <div class="form-answer is-income">
         <input class="form-is-income-input" type="radio" value="1" name="is-income" id="is-income" required />
@@ -133,6 +136,9 @@ export default class Form {
         this.store.removeActivity(data.selectItem);
       });
       this.modifyMode(data.selectItem);
+      bindEvent('.edit-cancel-button', 'click', () => {
+        this.store.cancelSelect();
+      });
     }
   }
 

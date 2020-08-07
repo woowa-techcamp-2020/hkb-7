@@ -144,6 +144,12 @@ class Store extends Observable {
     this.notify(this.data, 'selectItem');
   }
 
+  cancelSelect() {
+    this.data.selectItem = null;
+    this.data.mode = 'create';
+    this.notify(this.data, 'stateChange');
+  }
+
   calcTotal(activities) {
     return activities.reduce(
       (acc, cur) => {
