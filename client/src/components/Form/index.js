@@ -57,11 +57,6 @@ export default class Form {
       </div>
       <div class="form-answer">
         <div class="month-grid-container">
-          ${days
-            .map((day) => {
-              return formDays(day);
-            })
-            .join('')}
           ${dates
             .map((date) => {
               return formDates(date);
