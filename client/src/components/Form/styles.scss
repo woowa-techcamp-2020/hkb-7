@@ -3,13 +3,39 @@
   overflow: scroll;
 }
 
-.form-title {
+.form-title-container {
   padding: 20px 20px 10px 20px;
   position: sticky;
+  display: flex;
   top: 0;
   background: var(--hkb-white);
   font-size: var(--hkb-font-big);
   z-index: 1;
+}
+
+.edit-cancel-button {
+  box-sizing: border-box;
+  margin: 0px 0px auto auto;
+  padding: 3px 5px;
+  font-size: var(--hkb-font-small);
+  border: 2px solid var(--hkb-border-color);
+  color: var(--inactive-foreground-color);
+  background-color: var(--inactive-background-color);
+  border-radius: 10px;
+  text-align: center;
+  &:hover {
+    color: var(--focused-foreground-color);
+    background-color: var(--focused-background-color);
+  }
+  &:focus {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+    outline: none;
+  }
+  &:active {
+    background-color: var(--active-background-color);
+    color: var(--active-foreground-color);
+  }
 }
 
 .form-question {
