@@ -30,7 +30,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res, next)
       // expires after 7 days (1 week)
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     })
-    .redirect('/');
+    .redirect('/activity');
 });
 
 module.exports = router;
