@@ -44,7 +44,7 @@ module.exports = {
       filename: '[name].css',
     }),
     new webpack.DefinePlugin({
-      __API__: JSON.stringify('http://13.124.84.117:3000'),
+      __API__: JSON.stringify(''),
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',

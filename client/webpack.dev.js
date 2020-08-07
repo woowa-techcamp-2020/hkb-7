@@ -48,7 +48,7 @@ module.exports = {
       hash: true,
     }),
     new webpack.DefinePlugin({
-      __API__: JSON.stringify('http://localhost:3000'),
+      __API__: JSON.stringify(''),
     }),
     new webpack.BannerPlugin({
       banner: () => {
