@@ -125,13 +125,13 @@ class Store extends Observable {
     await apis.updateActivity(info);
     this.data.selectItem = null;
     this.data.mode = 'create';
-    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.token, this.data.year, this.data.month)) };
     this.notify(this.data, 'stateChange');
   }
 
   async removeActivity(item) {
     await apis.deleteActivity(item.id);
-    this.data = { ...this.data, ...(await this.fetchActivities(this.data.userId, this.data.year, this.data.month)) };
+    this.data = { ...this.data, ...(await this.fetchActivities(this.data.token, this.data.year, this.data.month)) };
     this.data.selectItem = null;
     this.data.mode = 'create';
     this.notify(this.data, 'stateChange');
