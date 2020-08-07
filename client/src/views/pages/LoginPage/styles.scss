@@ -1,0 +1,24 @@
+.login-modal {
+  text-decoration: none;
+  color: var(--hkb-black);
+  box-sizing: content-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: x-large;
+  margin: 10px;
+  border: 2px solid var(--hkb-border-color);
+  display: flex;
+  padding: 20px;
+  &:hover {
+    background-color: var(--focused-background-color);
+    color: var(--focused-foreground-color);
+  }
+  border-radius: 10px;
+}
+
+.login-modal-text {
+  margin: auto;
+  padding-left: 10px;
+}
