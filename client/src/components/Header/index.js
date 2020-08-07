@@ -51,7 +51,7 @@ export default class Header {
     `;
     bindEvent('button.profile', 'click', () => {
       localStorage.clear();
-      location.href = '/login';
+      location.href = '/';
     });
   }
 }
