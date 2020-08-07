@@ -6,9 +6,6 @@ export const saveTokenInLocalStorage = (cookie) => {
   if (!cookie) {
     return;
   }
-  if (cookie.indexOf(';') === -1) {
-    return;
-  }
   const token = cookie
     .split('; ')
     .find((row) => row.startsWith('token'))
