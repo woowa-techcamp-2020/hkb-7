@@ -15,6 +15,10 @@ const router = require('./routes');
 
 const app = express();
 
+// view engine setup
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('views', path.join(__dirname, '../client/dist'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,8 +38,11 @@ app.use((req, res, next) => {
 });
 app.use(cors());
 
-
 app.use('/', router);
+
+app.use((req, res) => {
+  res.redirect('/activity');
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)));
@@ -43,6 +50,7 @@ app.use((req, res, next) => next(createError(404)));
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
+  console.log(err);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   if (err.message) {

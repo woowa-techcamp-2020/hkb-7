@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 const profileController = require('../controllers/profile');
 const { wrapAsync } = require('../../shared/utils/helper');
 

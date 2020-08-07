@@ -4,7 +4,6 @@ const { readIdInJwt } = require('../utils/auth');
 exports.create = async (req, res) => {
   const userId = readIdInJwt(req.body.token);
   req.body.user_id = userId;
-  console.log(req.body);
   const activity = await Activity.create(req.body);
   res.send(activity);
 };
@@ -19,10 +18,7 @@ exports.findById = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  console.log('got jwt', token);
-  console.log('attempting to decode');
   const userId = readIdInJwt(req.params.token);
-  console.log('decode success: user is:', userId);
   const activities = await Activity.findAll(
     'activity.id, activity.price, activity.content, activity.date, category.name as category, category.is_income, payment_method.name as payment',
     {
@@ -32,7 +28,6 @@ exports.findAll = async (req, res) => {
       'activity.is_active': 1,
     },
   );
-  console.log(activities);
   res.send({ activities });
 };
 

@@ -11,8 +11,6 @@ export default class App {
     this.store = store;
     if (!identified()) {
       saveTokenInLocalStorage(document.cookie);
-      console.log('localStorage에', document.cookie, '저장 완료');
-      console.log('localStorage는 이제', localStorage);
     }
     if (identified()) {
       this.router = new Router();

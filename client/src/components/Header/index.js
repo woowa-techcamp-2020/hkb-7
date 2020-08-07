@@ -50,10 +50,8 @@ export default class Header {
       </div>
     `;
     bindEvent('button.profile', 'click', () => {
-      console.log('BEFORE CLEARING localStorage:', localStorage);
       localStorage.clear();
-      console.log('AFTER  CLEARING localStorage:', localStorage);
-      location.reload();
+      location.href = '/login';
     });
   }
 }

@@ -46,9 +46,7 @@ const authenticateLocal = () => passport.authenticate('local');
 
 const readIdInJwt = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
-    console.log(decoded.id);
     if (!err) {
-      console.log(decoded.id);
       return decoded.id;
     }
     return null;
