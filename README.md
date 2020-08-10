@@ -18,7 +18,7 @@
 
 ## 기술 스택
 
-![title](https://img.shields.io/badge/-TypeScript-007ACC?&logo=TypeScript&logoColor=white)
+![title](https://img.shields.io/badge/-JavaScript-eece4f?&logo=JavaScript&logoColor=white)
 ![title](https://img.shields.io/badge/-NPM-CB3837?&logo=NPM&logoColor=white)
 ![title](https://img.shields.io/badge/-Prettier-F7B93E?&logo=Prettier&logoColor=white)
 ![title](https://img.shields.io/badge/-HTML5-E34F26?&logo=html5&logoColor=white)
